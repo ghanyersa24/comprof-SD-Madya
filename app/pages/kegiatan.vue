@@ -29,13 +29,12 @@ const spiritualActivities = [
   <div>
     <!-- Hero Section -->
     <section class="px-6 mb-12 -mt-20 pt-24">
-      <div class="relative rounded-xl overflow-hidden aspect-[4/5] md:aspect-video flex items-end p-8 bg-primary-container max-w-7xl mx-auto">
+      <div
+        class="relative rounded-xl overflow-hidden aspect-[4/5] md:aspect-video flex items-end p-8 bg-primary-container max-w-7xl mx-auto">
         <div class="absolute inset-0 opacity-40">
           <img
             src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQph-FNHvtLJcCuGfpf1zRcq8q0F2VJ5vcCue5Z2LEsFCAUB_0sGkFhTs2A827c4sWtO-Hbkrts2nOyYTeM1yMSGlOKCWYe5q47diuNnOG81ey_8kINx5I37yNmgFInPN2F8-pw3PJlCCmRmavZXSqP1IBkc0gVZKgxEMXZ_umAeiyIWUhKE1uyJ_UYFiPJ1M7ea0R5B3ZEfFiV0OBlFoNVwQinNu1DBLT2gtKn2RRFSRAiyTTqXekTbj2q-z7Llz1y1yZIoGdWEs"
-            alt="Kegiatan belajar siswa"
-            class="w-full h-full object-cover"
-          />
+            alt="Kegiatan belajar siswa" class="w-full h-full object-cover" />
         </div>
         <div class="absolute inset-0 bg-gradient-to-t from-primary via-transparent to-transparent" />
         <div class="relative z-10 max-w-2xl">
@@ -44,7 +43,7 @@ const spiritualActivities = [
             Kegiatan Sekolah
           </h1>
           <p class="text-lg md:text-xl text-white/90 font-body italic leading-relaxed">
-            Membentuk generasi Robbani yang cerdas, kreatif, dan berakhlak mulia melalui pembiasaan ibadah dan pengembangan diri.
+            Kokoh dalam Spiritual, Unggul dalam Intelektual..
           </p>
         </div>
       </div>
@@ -61,13 +60,8 @@ const spiritualActivities = [
         </p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <ActivityCard
-          v-for="activity in spiritualActivities"
-          :key="activity.title"
-          :title="activity.title"
-          :description="activity.description"
-          :image="activity.image"
-        />
+        <ActivityCard v-for="activity in spiritualActivities" :key="activity.title" :title="activity.title"
+          :description="activity.description" :image="activity.image" />
       </div>
     </section>
 
@@ -83,7 +77,8 @@ const spiritualActivities = [
 
         <div class="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-4 h-auto md:h-[600px]">
           <!-- Futsal -->
-          <div class="md:col-span-2 md:row-span-1 bg-surface-container-lowest rounded-xl p-8 relative overflow-hidden group">
+          <div
+            class="md:col-span-2 md:row-span-1 bg-surface-container-lowest rounded-xl p-8 relative overflow-hidden group">
             <div class="relative z-10 flex flex-col h-full justify-end">
               <AppIcon name="sports_soccer" class="text-secondary text-4xl mb-4" />
               <h4 class="font-headline font-bold text-primary text-2xl mb-2">Futsal</h4>
@@ -97,7 +92,8 @@ const spiritualActivities = [
           </div>
 
           <!-- Tapak Suci -->
-          <div class="md:col-span-1 md:row-span-2 bg-primary-container rounded-xl p-8 flex flex-col justify-between group overflow-hidden">
+          <div
+            class="md:col-span-1 md:row-span-2 bg-primary-container rounded-xl p-8 flex flex-col justify-between group overflow-hidden">
             <div class="relative z-10">
               <AppIcon name="sports_martial_arts" class="text-secondary-container text-4xl mb-4" />
               <h4 class="font-headline font-bold text-white text-2xl mb-4">Tapak Suci</h4>
@@ -110,13 +106,13 @@ const spiritualActivities = [
                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpy9RYzvDLRzeG9QMKrfhGBWpUBxR-zPz-5UJfgav4EkKugGY-Tek3IDJrw1ZcChnEAVQeRACN6qksdWtJ7RtRYWCYVpfr8TPPF6StQQF1NBI2ymrXYKnLuUKegzjAeLiJ2dPCGyqnWbmFLnnrBX-ngdDEAf71mX0XVyc2laCAMmD2NeunZcANlPAFUvO8YEsW9axCc8m0H-gFkc_inEruomTUZkYYijZNwDElFchpKH9djPa_fvOxipfIDXluEqAinnOujsQCRQI"
                 alt="Latihan Tapak Suci"
                 class="rounded-lg h-32 w-full object-cover shadow-lg opacity-60 group-hover:opacity-100 transition-opacity"
-                loading="lazy"
-              />
+                loading="lazy" />
             </div>
           </div>
 
           <!-- Hizbul Wathan -->
-          <div class="md:col-span-1 md:row-span-1 bg-secondary-container rounded-xl p-8 flex flex-col items-center justify-center text-center">
+          <div
+            class="md:col-span-1 md:row-span-1 bg-secondary-container rounded-xl p-8 flex flex-col items-center justify-center text-center">
             <AppIcon name="forest" class="text-primary text-5xl mb-4" />
             <h4 class="font-headline font-bold text-primary text-2xl mb-2">Hizbul Wathan</h4>
             <p class="font-body text-on-secondary-container text-sm">
@@ -136,10 +132,7 @@ const spiritualActivities = [
             <div class="hidden sm:block w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-xl">
               <img
                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBvcXR307HzoQlSV5zVYv5fQ0c1P03HrsAFNGjrRqspQkVx7nQqTufKY7O6q-DcILiZiJDY-eldR-jaCr5IzFeROf_F84LgZwrGg8FfaS1ah7eVbD9SnO-K9phvwPoe-Q1dOAxiCUzJtYb4aSUCg34I-wXag_O6pKNWoYuqCDjyTaBotO2SDqTfGrqY1aMnjOsuTLLNANQ9BWh9yEaPHQ8v83AS-VL2YD6Iw33GoElvFRLRmN4zbISWnFh4jIvqigqUjpXoZ3s0v0"
-                alt="Marching Band"
-                class="w-full h-full object-cover"
-                loading="lazy"
-              />
+                alt="Marching Band" class="w-full h-full object-cover" loading="lazy" />
             </div>
           </div>
         </div>

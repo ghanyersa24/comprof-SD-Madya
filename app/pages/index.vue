@@ -3,7 +3,7 @@ useSeoMeta({
   title: 'SD Muhammadiyah Ambulu - Sekolah Juara',
   description: 'SD Muhammadiyah 1 Ambulu - Unggul dalam Imtaq dan Iptek, Mencetak Generasi Berkarakter Qurani yang Siap Menghadapi Masa Depan.',
   ogTitle: 'SD Muhammadiyah Ambulu - Sekolah Juara',
-  ogDescription: 'Unggul dalam Imtaq dan Iptek, Mencetak Generasi Berkarakter Qurani.',
+  ogDescription: 'Kokoh dalam Spiritual, Unggul dalam Intelektual.',
 })
 </script>
 
@@ -26,11 +26,11 @@ useSeoMeta({
           </AppBadge>
 
           <h1 class="font-headline font-extrabold text-5xl md:text-7xl text-white leading-tight tracking-tighter">
-            SD Muhammadiyah Ambulu
+            SD Muhammadiyah 01 Ambulu
           </h1>
 
           <p class="font-body text-xl md:text-2xl text-white/90 leading-relaxed italic max-w-xl">
-            "Unggul dalam Imtaq dan Iptek, Mencetak Generasi Berkarakter Qur'ani yang Siap Menghadapi Masa Depan."
+            "Kokoh dalam Spiritual, Unggul dalam Intelektual."
           </p>
 
           <div class="flex flex-wrap gap-4 pt-4">
@@ -177,7 +177,7 @@ useSeoMeta({
     <!-- CTA Section -->
     <CtaSection
       title="Mulai Perjalanan Prestasi Anak Anda Bersama Kami"
-      subtitle="Pendaftaran Peserta Didik Baru (PPDB) Tahun Ajaran 2025/2026 telah dibuka. Kuota terbatas."
+      subtitle="Pendaftaran Peserta Didik Baru (PPDB) Tahun Ajaran 2026/2027 telah dibuka. Kuota terbatas."
       cta-primary="Daftar Online Sekarang"
       cta-secondary="Panduan PPDB"
       cta-primary-link="/kontak"
