@@ -1,8 +1,8 @@
 <script setup lang="ts">
 useSeoMeta({
-  title: 'SD Muhammadiyah Ambulu - Sekolah Juara',
+  title: 'SD Muhammadiyah 01 Ambulu - Sekolah Juara',
   description: 'SD Muhammadiyah 1 Ambulu - Unggul dalam Imtaq dan Iptek, Mencetak Generasi Berkarakter Qurani yang Siap Menghadapi Masa Depan.',
-  ogTitle: 'SD Muhammadiyah Ambulu - Sekolah Juara',
+  ogTitle: 'SD Muhammadiyah 01 Ambulu - Sekolah Juara',
   ogDescription: 'Kokoh dalam Spiritual, Unggul dalam Intelektual.',
 })
 </script>
@@ -14,7 +14,7 @@ useSeoMeta({
       <div class="absolute inset-0 opacity-20">
         <img
           src="https://lh3.googleusercontent.com/aida-public/AB6AXuAl_3pn07llD5gfYrftib-KBiOS7mZQI3DVUpKtfgnQJZux8S1n-1mYvdonB8WAAuhKlDT9_c83Sx3bCo5H60sXYfpvUUR04uc_qkoa8G3LlvTHAVsSdDbiiUEMQL9kvolyqWpCmJRtvCrqMe3tD0rSKbdHgZRlQtbUYZ6Rim8nX9DnVKrC1KZWbmsWnzaJ-uXNMtAbGjmDWjfisr79lzcvJBab-p92SN09i5D2BIiataVOHxGMuppmdofYJEdTKU-8nYmjVTgQpzA"
-          alt="Gedung SD Muhammadiyah Ambulu"
+          alt="Gedung SD Muhammadiyah 01 Ambulu"
           class="w-full h-full object-cover"
         />
       </div>
@@ -48,7 +48,7 @@ useSeoMeta({
           <div class="relative z-10 rounded-2xl overflow-hidden shadow-2xl border-4 border-white/10">
             <img
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhd3eLlWmN2yVHT2cyrWWh6Isz_HXM8dp2rrvhmqjxv40p6fxIt1ohbrbU0C-a12KRv8lXyBLFctASL4sJFIltGMqmP-4J6ZMyZO4m9KlDS6YvLFIOWF5E4Hyqr2ZHWpPgDR7E3ObDy2F80gSdGIyXscfJzKyBUWzkwosjzXuVNf89NRwQGCp5_9dVyFPoYFBkNhXXm6YkCfjIGH87LVQoJsgB7m_V33eFZEGPPiaW1r-sbfnxuYk9wvFclO5v-gH_VCXdtELLQlk"
-              alt="Siswa SD Muhammadiyah Ambulu"
+              alt="Siswa SD Muhammadiyah 01 Ambulu"
               class="w-full aspect-[4/5] object-cover"
             />
           </div>
@@ -133,7 +133,7 @@ useSeoMeta({
           <div class="md:col-span-2 md:row-span-2 bg-primary-container rounded-3xl p-8 flex flex-col justify-end relative overflow-hidden group">
             <img
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7EsCiy_rddl_fnCXRYvDRkdHxsqgOKobinIW_okPbw4F0V-gH5vcCTgbqwVbwW6UhJz97--qdYU0yNBrO5uSJbxA-IKpv0NKbv1Y55FURplF9Vq0ilFqjV4tCkWal-qvJAKEyulMMMWXRvaj6qxllU-6atsd4R3UcuIYuswng1fSVGlaJdfAolgAT_Mvvozb89J41-elJDoUhc4QlCpG2KenUQ1VfkehnUUr6iEPMC98LBBARK192ndoyd9qwRxYZGkOLI9mNnBI"
-              alt="Tim robotik SD Muhammadiyah Ambulu"
+              alt="Tim robotik SD Muhammadiyah 01 Ambulu"
               class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:scale-110 transition-transform duration-500"
               loading="lazy"
             />
@@ -142,7 +142,7 @@ useSeoMeta({
               <AppBadge>Tingkat Provinsi</AppBadge>
               <h3 class="font-headline font-bold text-3xl text-white">Juara 1 Lomba Robotik Nasional</h3>
               <p class="font-body text-white/80 max-w-lg">
-                Inovasi tanpa batas dari tim robotik cilik SD Muhammadiyah Ambulu yang berhasil mengungguli sekolah-sekolah unggulan lainnya.
+                Inovasi tanpa batas dari tim robotik cilik SD Muhammadiyah 01 Ambulu yang berhasil mengungguli sekolah-sekolah unggulan lainnya.
               </p>
             </div>
           </div>

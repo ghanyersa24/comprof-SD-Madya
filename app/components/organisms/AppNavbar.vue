@@ -27,7 +27,7 @@ const isActive = (path: string) => {
           <AppIcon name="school" class="text-primary" />
         </div>
         <span class="font-headline font-bold tracking-tight text-lg text-white uppercase tracking-wider">
-          SD Muhammadiyah Ambulu
+          SD Muhammadiyah 01 Ambulu
         </span>
       </NuxtLink>
 

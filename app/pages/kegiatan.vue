@@ -1,8 +1,8 @@
 <script setup lang="ts">
 useSeoMeta({
-  title: 'Kegiatan Sekolah - SD Muhammadiyah Ambulu',
+  title: 'Kegiatan Sekolah - SD Muhammadiyah 01 Ambulu',
   description: 'Program kegiatan pembiasaan spiritual dan ekstrakurikuler SD Muhammadiyah 1 Ambulu. Sholat Dhuha, Tahfidz Quran, Futsal, Tapak Suci, dan lainnya.',
-  ogTitle: 'Kegiatan Sekolah - SD Muhammadiyah Ambulu',
+  ogTitle: 'Kegiatan Sekolah - SD Muhammadiyah 01 Ambulu',
   ogDescription: 'Membentuk generasi Robbani yang cerdas, kreatif, dan berakhlak mulia.',
 })
 

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 useSeoMeta({
-  title: 'Galeri Sekolah - SD Muhammadiyah Ambulu',
+  title: 'Galeri Sekolah - SD Muhammadiyah 01 Ambulu',
   description: 'Dokumentasi visual kegiatan, fasilitas, dan momen berharga di SD Muhammadiyah 1 Ambulu.',
-  ogTitle: 'Galeri Sekolah - SD Muhammadiyah Ambulu',
+  ogTitle: 'Galeri Sekolah - SD Muhammadiyah 01 Ambulu',
   ogDescription: 'Jejak langkah dan pencapaian kami dalam mendidik generasi rabbani.',
 })
 

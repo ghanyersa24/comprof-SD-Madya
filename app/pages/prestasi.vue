@@ -1,8 +1,8 @@
 <script setup lang="ts">
 useSeoMeta({
-  title: 'Prestasi & Penghargaan - SD Muhammadiyah Ambulu',
+  title: 'Prestasi & Penghargaan - SD Muhammadiyah 01 Ambulu',
   description: 'Prestasi akademik dan non-akademik SD Muhammadiyah 1 Ambulu. Tradisi mencetak generasi berprestasi dengan 500+ trofi nasional.',
-  ogTitle: 'Prestasi & Penghargaan - SD Muhammadiyah Ambulu',
+  ogTitle: 'Prestasi & Penghargaan - SD Muhammadiyah 01 Ambulu',
   ogDescription: 'Tradisi mencetak generasi berprestasi. 500+ trofi nasional, 98% lulusan terbaik.',
 })
 
@@ -15,7 +15,7 @@ const stats = [
 
 const testimonials = [
   {
-    quote: 'SD Muhammadiyah Ambulu memberikan landasan karakter yang sangat kuat bagi saya. Kedisiplinan dan nilai keislaman yang diajarkan terbawa hingga saya menempuh karir sekarang.',
+    quote: 'SD Muhammadiyah 01 Ambulu memberikan landasan karakter yang sangat kuat bagi saya. Kedisiplinan dan nilai keislaman yang diajarkan terbawa hingga saya menempuh karir sekarang.',
     name: 'dr. Hendra Wijaya',
     role: 'Alumni Tahun 2005',
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCOY7-Q_xKKPFps_a-VkfXKKzD2FGb6W1xRdSljH86a9K5jxkNs5Qh2VUOYoGbwIv1HZ-HDcGN71CIzIsvpa7e9AdwTjfxl8-Fbv5eNfOtTc9bA9b0STnCI2A1XfVWkfeSChFxOr6ZEzzzoCLXRMMWdlGacwlU-Inl4fgeT3fnyd0QNfEnqKFuxrxzNI5MwiW_W2IBNflkMWbfzkMm-cPAGdr-4FRvIIyVE2yxi6OQVpcd1n4-Gu_E8dRAgjpkaZbi7U4Gzj0hyi6g',
@@ -174,7 +174,7 @@ const testimonials = [
 
     <!-- CTA Section -->
     <CtaSection title="Siapkan Masa Depan Gemilang Buah Hati Anda"
-      subtitle="Bergabunglah dengan komunitas pembelajar kami dan jadilah bagian dari tradisi juara di SD Muhammadiyah Ambulu."
+      subtitle="Bergabunglah dengan komunitas pembelajar kami dan jadilah bagian dari tradisi juara di SD Muhammadiyah 01 Ambulu."
       cta-primary="Daftar Sekarang" cta-secondary="Konsultasi Pendidikan" />
   </div>
 </template>

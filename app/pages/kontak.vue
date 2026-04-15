@@ -8,9 +8,9 @@ const startYear = currentMonth > 7 ? currentYear + 1 : currentYear
 const academicYear = `${startYear}/${startYear + 1}`
 
 useSeoMeta({
-  title: 'Kontak & Pendaftaran - SD Muhammadiyah Ambulu',
+  title: 'Kontak & Pendaftaran - SD Muhammadiyah 01 Ambulu',
   description: `Hubungi SD Muhammadiyah 1 Ambulu atau daftar online untuk PPDB Tahun Ajaran ${academicYear}. Formulir pendaftaran peserta didik baru.`,
-  ogTitle: 'Kontak & Pendaftaran - SD Muhammadiyah Ambulu',
+  ogTitle: 'Kontak & Pendaftaran - SD Muhammadiyah 01 Ambulu',
   ogDescription: `Pendaftaran Peserta Didik Baru tahun ajaran ${academicYear}. Daftar online sekarang.`,
 })
 
@@ -95,7 +95,7 @@ const submitToWhatsApp = () => {
         <div class="rounded-xl overflow-hidden h-64 grayscale hover:grayscale-0 transition-all duration-500 shadow-lg">
           <img
             src="https://lh3.googleusercontent.com/aida-public/AB6AXuBE39xcjw_sWSwuji27KPytMjyPt1W2qi90bbmAjgcUmI6islFVkxUPTjmgwMu93JGPyIh4GBTJCZHIji-Esf8fD22LeiUpXI6PjSOM7gzSIjj29-BTCPzT277qjG8z79xI6_By8IwOBlgkz72X8hjEuU5DdgU2fhRU0tPbmhm74PeCsCdaalk4PY3C-MZkeb4Q-vjN9diDUKFmHiFxvpMauokG9OQyUma3j0Y_pgJP5cIM2wa7_33KS2dYguKtqAms02tZMpIPu4o"
-            alt="Lokasi SD Muhammadiyah Ambulu" class="w-full h-full object-cover" loading="lazy" />
+            alt="Lokasi SD Muhammadiyah 01 Ambulu" class="w-full h-full object-cover" loading="lazy" />
         </div>
       </aside>
 

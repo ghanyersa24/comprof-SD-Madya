@@ -1,9 +1,9 @@
 <script setup lang="ts">
 useSeoMeta({
-  title: 'Tim Pengajar - SD Muhammadiyah Ambulu',
+  title: 'Tim Pengajar - SD Muhammadiyah 01 Ambulu',
   description: 'Profil tenaga pengajar SD Muhammadiyah 1 Ambulu. Tim pendidik profesional yang berdedikasi membentuk generasi Robbani.',
-  ogTitle: 'Tim Pengajar - SD Muhammadiyah Ambulu',
-  ogDescription: 'Pilar kecemerlangan — tim pendidik profesional SD Muhammadiyah Ambulu.',
+  ogTitle: 'Tim Pengajar - SD Muhammadiyah 01 Ambulu',
+  ogDescription: 'Pilar kecemerlangan — tim pendidik profesional SD Muhammadiyah 01 Ambulu.',
 })
 
 const teachers = [
@@ -69,7 +69,7 @@ const teachers = [
           <div class="md:col-span-2 relative h-80 md:h-auto overflow-hidden">
             <img
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXLNuQ22aJMkuYzX1u3y-1v7waQVmEf-AWvMCjUmztRy5AArBqce-dsDTjWzC1hB6kEiJBK0UTIAjQTHjtU1_ZwFGxAz0gIVzPITx9p4KoUSN4jz5XYVw6D6eXXZLMTbjFElUxdsqrfnxy5EDM0fvG6-d-L0mo-X-BXqlhvRdbfAeRcoq9O-VwTH9U_U7J9QLghVqYqJ-Qy8cgP7Wyd5DIrixhq5Fk1rSxPg-cxIyVoFqDkUtrFtnChqmhuQoO3gJgYDmEPk5ZCgA"
-              alt="Drs. H. Ahmad Fauzi, M.Pd. - Kepala Sekolah"
+              alt="Beni Hendarto, S.Pd.I - Kepala Sekolah"
               class="w-full h-full object-cover"
             />
             <div class="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent" />
