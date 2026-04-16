@@ -1,75 +1,67 @@
-# Nuxt Minimal Starter
+# 🏫 School Profile - SD Muhammadiyah 1 Ambulu
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Welcome to the digital profile project for **SD Muhammadiyah 1 Ambulu**. This is a modern, responsive web application designed to represent the school's identity, values, and educational excellence.
 
-## Setup
+---
 
-Make sure to install dependencies:
+## 🌟 About the School
+SD Muhammadiyah 1 Ambulu (SDS Muhammadiyah) is a primary education institution under the **Muhammadiyah** organization located in Jember, East Java. We strive to provide a balanced education that integrates academic excellence with strong Islamic values.
 
+### 📍 School Identity
+- **Full Name**: SD Muhammadiyah 1 Ambulu
+- **NPSN**: 20554179
+- **Address**: Jl. dr. Soetomo No. 15, Desa Ambulu, Kec. Ambulu, Kab. Jember, Jawa Timur
+- **Accreditation**: B
+- **Affiliation**: Pimpinan Daerah Muhammadiyah (PDM) Jember
+
+---
+
+## 🚀 Key Features
+- **✨ Modern UI/UX**: Professional design aesthetics using Vanilla CSS and Tailwind CSS.
+- **⚡ High Performance**: Powered by Nuxt 4 for lightning-fast page transitions and optimal SEO.
+- **📱 Fully Responsive**: Seamless experience across mobile, tablet, and desktop devices.
+- **🎨 Custom Typography**: Integrated with professional fonts via Google Fonts.
+
+---
+
+## 🛠 Tech Stack
+- **Framework**: [Nuxt 4](https://nuxt.com/) (Vue.js 3)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Fonts**: [Google Fonts](https://fonts.google.com/)
+- **Infrastructure**: Node.js v24.15.0+
+
+---
+
+## 💻 Getting Started
+
+### Prerequisites
+- Node.js (v24 or later recommended)
+- npm / pnpm / yarn
+
+### Installation
 ```bash
-# npm
+# Install dependencies
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
 ```
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
+### Development
+Start the development server with Hot Module Replacement (HMR):
 ```bash
-# npm
 npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
+Open `http://localhost:3000` in your browser.
 
-## Production
-
-Build the application for production:
-
+### Production
+Build and preview the application for production:
 ```bash
-# npm
+# Build the project
 npm run build
 
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
+# Preview production build
 npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+---
+
+## 📄 License
+This project is private and intended for the internal use of **SD Muhammadiyah 1 Ambulu**.
