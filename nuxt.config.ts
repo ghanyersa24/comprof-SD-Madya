@@ -23,8 +23,8 @@ export default defineNuxtConfig({
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',
       meta: [
-        { property: 'og:image', content: '/prestasi.jpeg' },
-        { name: 'twitter:image', content: '/prestasi.jpeg' }
+        { property: 'og:image', content: 'https://sd-madya.ambulu.or.id/prestasi.jpeg' },
+        { name: 'twitter:image', content: 'https://sd-madya.ambulu.or.id/prestasi.jpeg' }
       ]
     },
   },
