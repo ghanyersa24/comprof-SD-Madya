@@ -23,8 +23,8 @@ export default defineNuxtConfig({
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',
       meta: [
-        { property: 'og:image', content: 'https://sd-madya.ambulu.or.id/prestasi.jpeg' },
-        { name: 'twitter:image', content: 'https://sd-madya.ambulu.or.id/prestasi.jpeg' }
+        { property: 'og:image', content: 'https://pwmu.co/wp-content/uploads/2026/04/WhatsApp-Image-2026-04-19-at-6.37.00-PM-1024x602.jpeg' },
+        { name: 'twitter:image', content: 'https://pwmu.co/wp-content/uploads/2026/04/WhatsApp-Image-2026-04-19-at-6.37.00-PM-1024x602.jpeg' }
       ]
     },
   },
