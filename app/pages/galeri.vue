@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 useSeoMeta({
   title: 'Galeri Sekolah - SD Muhammadiyah 01 Ambulu',
   description: 'Dokumentasi visual kegiatan, fasilitas, dan momen berharga di SD Muhammadiyah 1 Ambulu.',
@@ -69,7 +70,7 @@ const galleryItems = [
       <div class="relative aspect-video rounded-3xl overflow-hidden shadow-2xl bg-primary-container group">
         <template v-if="!showVideo">
           <img
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAl_3pn07llD5gfYrftib-KBiOS7mZQI3DVUpKtfgnQJZux8S1n-1mYvdonB8WAAuhKlDT9_c83Sx3bCo5H60sXYfpvUUR04uc_qkoa8G3LlvTHAVsSdDbiiUEMQL9kvolyqWpCmJRtvCrqMe3tD0rSKbdHgZRlQtbUYZ6Rim8nX9DnVKrC1KZWbmsWnzaJ-uXNMtAbGjmDWjfisr79lzcvJBab-p92SN09i5D2BIiataVOHxGMuppmdofYJEdTKU-8nYmjVTgQpzA"
+            src="~/assets/images/bangunan_sekolah.png"
             alt="Video Profil Sekolah"
             class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
             loading="lazy" />
@@ -162,3 +163,15 @@ const galleryItems = [
     </section>
   </div>
 </template>
+
+function useSeoMeta(arg0: { title: string; description: string; ogTitle: string; ogDescription: string }) {
+  throw new Error('Function not implemented.')
+}
+
+function useSeoMeta(arg0: { title: string; description: string; ogTitle: string; ogDescription: string }) {
+  throw new Error('Function not implemented.')
+}
+
+function useSeoMeta(arg0: { title: string; description: string; ogTitle: string; ogDescription: string }) {
+  throw new Error('Function not implemented.')
+}
