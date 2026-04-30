@@ -53,7 +53,7 @@ const submitToWhatsApp = () => {
         </div>
         <div class="relative w-full md:w-2/5 aspect-square rounded-2xl overflow-hidden shadow-2xl rotate-3">
           <img
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWc82fin-nrKyzZi4GS3S2b8QwacOFD2E_NbO-gQSEO7Ch0Hqgl0gxd01RJlxmeBbwEuGNLgkll-kbTOmWCjOuTWQxdDUqIHw4amhXly-5CRjQOg0EwePAz59Ve8Jq2XUtJN51105KZ7Rqz7isuYtCd6kDe2eSFTSOFxdWGym9-p_oLM7Z6RmUaz7WZonbYcG6oR5QR72ZJmC7ZYct3VBOXUzTk2RAalx1v7IUNwJJebgLaxNEtC4v-1x5XXqLw2Ywmc5ymlJAzoQ"
+            src="~/assets/images/prestasi_portrait.png"
             alt="Siswa SD Muhammadiyah" class="w-full h-full object-cover" />
         </div>
         <!-- Decorative Sheen -->

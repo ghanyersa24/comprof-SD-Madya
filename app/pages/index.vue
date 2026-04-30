@@ -1,4 +1,31 @@
 <script setup lang="ts">
+const testimonials = [
+  {
+    quote:
+      "SD Muhammadiyah 01 Ambulu memberikan landasan karakter yang sangat kuat bagi saya. Kedisiplinan dan nilai keislaman yang diajarkan terbawa hingga saya menempuh karir sekarang.",
+    name: "dr. Hendra Wijaya",
+    role: "Alumni Tahun 2005",
+    image:
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuCOY7-Q_xKKPFps_a-VkfXKKzD2FGb6W1xRdSljH86a9K5jxkNs5Qh2VUOYoGbwIv1HZ-HDcGN71CIzIsvpa7e9AdwTjfxl8-Fbv5eNfOtTc9bA9b0STnCI2A1XfVWkfeSChFxOr6ZEzzzoCLXRMMWdlGacwlU-Inl4fgeT3fnyd0QNfEnqKFuxrxzNI5MwiW_W2IBNflkMWbfzkMm-cPAGdr-4FRvIIyVE2yxi6OQVpcd1n4-Gu_E8dRAgjpkaZbi7U4Gzj0hyi6g",
+  },
+  {
+    quote:
+      "Saya sangat bersyukur pernah sekolah di sini. Gurunya sangat perhatian dan mampu menemukan bakat seni saya yang saat itu belum terlihat. Juara lukis pertama saya dimulai dari sini.",
+    name: "Siti Aminah, M.Ds",
+    role: "Desainer & Alumni 2010",
+    image:
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuCBGeaDgkApaIc-hisB_uUv8NJ1YBZsGWvQvpSUlfirSe41ddsBSiOmUoEnldO2kQ_OhJbo4LByo_EMcR6Ag8VSoAugLjVzv-rJRqdC7yC8uXh4ukWOgc2tRcxVz4Afdpmm4wlhJFsm9JX2AXYYxQl8LYiR7HT2oT8779AVBZEkBFzEM-PLmu6oFvwfTHDQ82eOOMCMV6Ne0qhdIQygXdGbmhYo3SYoh0zSTNsl_x0a1qD7gJgSXjmjOOafIh0XWF3OjC0fHzBAcGk",
+  },
+  {
+    quote:
+      "Ekosistem belajarnya sangat kompetitif namun tetap suportif. Saya diajarkan untuk tidak pernah takut gagal dalam berkompetisi. Semangat juara itu masih ada dalam diri saya.",
+    name: "Ir. Rizky Pratama",
+    role: "Alumni Tahun 2008",
+    image:
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuDKy5j7x_LayIcmdtnjTLRyLgezl7CosIKu1jZHRw-SEV0ErlGcfo0kFmn1GZGTu8G9ZGKp3tipkTr6ISxIOVYkLkPvq41ykMzkcbOCSBKWq3-uQ62inBlodh8UApuZrVbL8S40l893GUq_XQa9aE6wynKhAE6Pinl-CXls1TfSnmWN_BAKsna4DzROSgMU10VOMeaFlWB_lBK5WTubRjSfZAbKK7tNkighmcRcDUWlYgKBD38YmSCg6zpm9COT5Y-fFar4D9BjN-o",
+  },
+]
+
 useSeoMeta({
   title: "SD Muhammadiyah 01 Ambulu - Sekolah Juara",
   description:
@@ -197,6 +224,29 @@ useSeoMeta({
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Alumni Testimonials -->
+    <section class="bg-surface-container-low py-20 px-6">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16 space-y-4">
+          <SectionLabel text="Suara Alumni" class="justify-center" />
+          <h2 class="font-headline font-bold text-4xl text-primary">
+            Apa Kata Mereka?
+          </h2>
+          <div class="w-20 h-1 bg-secondary mx-auto" />
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <TestimonialCard
+            v-for="testimonial in testimonials"
+            :key="testimonial.name"
+            :quote="testimonial.quote"
+            :name="testimonial.name"
+            :role="testimonial.role"
+            :image="testimonial.image"
+          />
         </div>
       </div>
     </section>

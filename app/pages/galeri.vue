@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 useSeoMeta({
   title: 'Galeri Sekolah - SD Muhammadiyah 01 Ambulu',
   description: 'Dokumentasi visual kegiatan, fasilitas, dan momen berharga di SD Muhammadiyah 1 Ambulu.',
@@ -17,6 +17,7 @@ const galleryItems = [
     alt: 'Metode Pembelajaran Aktif',
     label: 'Akademik',
     title: 'Metode Pembelajaran Aktif',
+    category: 'Kegiatan Belajar',
     span: 'col-span-2 row-span-2',
   },
   {
@@ -24,29 +25,40 @@ const galleryItems = [
     alt: 'Panahan Sunnah',
     label: 'Ekskul',
     title: 'Panahan Sunnah',
+    category: 'Ekstrakurikuler',
     span: 'col-span-1 row-span-2',
   },
   {
     src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuD3m8_Z7Yo7j9X2oFhQsgo07CqG-w65oCnZf0GLlSq_qk29hcoMRIH3t_hhjXJr6upAm6_DprfRijlCfIxH2OhcvETb5SCZtsw5Gbzy-TL0JmOT7OxDi-dwxRlMALMHRa_9fywFPnNi-aa85gsba1SCMOuXcIvQiz6mI2uDgokwJkexNeRIm9ENOiMG2NQEC-tiT7goBQIlmN1BfNt_pTEf10JKQyppjjaVAzbMcyBDia3ab-4PdnT0_01shVkYVKc9WZvfbPdRXec',
     alt: 'Perpustakaan',
+    category: 'Fasilitas',
     span: 'col-span-1 row-span-1',
   },
   {
     src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDoDp3i603dOs1cDvdCnNaS_cEEyM8zJh6-eE6c0KyDHjl9d2-X1MgL0XfmMfM9N4sjv_OAP1Wge-wPKMAxYHrlC5lAIFbU8DGNhZpCL-APEoJqc0ryRKrBIDfgQllqWqi6NRQF4tmzhZJU61ql8cddhgj3QBO36XlBcQLhvkZzvJNPDZvyznz-JriB6JPg8PJErtAXCT1pNxu-VlDIDPs865wMKfOAe4jJUCWDoiJg79IeDpx8nTWxs0vCRAAjZBezyPMzYEOZiyI',
     alt: 'Lab Komputer',
+    category: 'Fasilitas',
     span: 'col-span-1 row-span-1',
   },
   {
     src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCiKRVWL8E1Ar1AscjO5uDY_UaxdlXQ_vV6Uicys-XR898qD-ltooIFVud-S13ITRqPtaIWHnfYrvRAdbm6TDgpRwRzP5wz3zRUp928SUTnJoEn2hfbKVnAyDF--6Ot7B2GCwGiRMi36P-F2fHd6QRk5BMmsI8uWxHG6gsUT6I1SoPsWW0Cb8ohIHpLVR9hZmQCAW4gDiuZnw4n5iXa-4rgIU7q25ukzfPyyNAhHews5GQtARf2X9grhUD9JvEaMFEOriNt0RHOPOU',
     alt: 'Kebun Sekolah',
+    category: 'Fasilitas',
     span: 'col-span-1 row-span-1',
   },
   {
     src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAaXB7wBr_EU72v4CiHCwKbmqReCAyNhuAq6kQPLzSSe30kl1Jd8uNeQFISZ_HqHufPi1suGPqiaCcsBOVP15x8LQgEqj4iL06cjg6PNMYmZEfGjGFCc3xRfhc0SB-oUEA1sfL8En7DD3xyFdAs_cz099u7mqVwo046yQkOZ4WjggQGjPgqHisQl0z8c7GnLf9mErnNwXtlqVjUZRmLV8FuqeR_zT2zSCMNRWO-IfRWz8Hjip5GdPdvotEpVePsf5nGz5BPOZPxm5g',
     alt: 'Ruang Seni',
+    category: 'Kegiatan Belajar',
     span: 'col-span-1 row-span-1',
   },
 ]
+
+const filteredItems = computed(() =>
+  activeFilter.value === 'Semua Momen'
+    ? galleryItems
+    : galleryItems.filter(item => item.category === activeFilter.value)
+)
 </script>
 
 <template>
@@ -70,7 +82,7 @@ const galleryItems = [
       <div class="relative aspect-video rounded-3xl overflow-hidden shadow-2xl bg-primary-container group">
         <template v-if="!showVideo">
           <img
-            src="~/assets/images/bangunan_sekolah.png"
+            src="~/assets/images/bangunan_sekolah_2.png"
             alt="Video Profil Sekolah"
             class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
             loading="lazy" />
@@ -109,7 +121,7 @@ const galleryItems = [
     <!-- Bento Photo Grid -->
     <section class="px-6 max-w-7xl mx-auto">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 auto-rows-[200px] md:auto-rows-[250px]">
-        <div v-for="(item, index) in galleryItems" :key="index"
+        <div v-for="(item, index) in filteredItems" :key="index"
           :class="[item.span, 'rounded-3xl overflow-hidden relative group bg-surface-container-low']">
           <img :src="item.src" :alt="item.alt"
             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy" />
@@ -164,14 +176,3 @@ const galleryItems = [
   </div>
 </template>
 
-function useSeoMeta(arg0: { title: string; description: string; ogTitle: string; ogDescription: string }) {
-  throw new Error('Function not implemented.')
-}
-
-function useSeoMeta(arg0: { title: string; description: string; ogTitle: string; ogDescription: string }) {
-  throw new Error('Function not implemented.')
-}
-
-function useSeoMeta(arg0: { title: string; description: string; ogTitle: string; ogDescription: string }) {
-  throw new Error('Function not implemented.')
-}

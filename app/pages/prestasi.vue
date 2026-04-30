@@ -1,4 +1,234 @@
 <script setup lang="ts">
+import { ref, computed } from 'vue'
+import imgPrestasi from '~/assets/images/prestasi.jpeg'
+import imgPrestasiPortrait from '~/assets/images/prestasi_portrait.png'
+import imgTahfidz from '~/assets/images/tahfidz.png'
+import imgPembelajaran from '~/assets/images/pembelajaran.png'
+import imgGaleriKegiatan from '~/assets/images/galeri_kegiatan.png'
+import imgFutsal from '~/assets/images/futsal.png'
+import imgTapakSuci from '~/assets/images/tapak_suci.png'
+import imgHizbulWathan from '~/assets/images/hizbul_wathan.png'
+import imgMarchingBand from '~/assets/images/marching_band.png'
+
+const activeFilter = ref('SEMUA')
+const filters = ['SEMUA', 'AKADEMIK', 'OLAHRAGA']
+const searchQuery = ref('')
+
+const achievements = [
+  {
+    id: 1,
+    title: 'Borong Juara FLS3N Tingkat Kecamatan',
+    category: 'AKADEMIK',
+    level: 'Tingkat Kecamatan',
+    year: '2026',
+    description: 'Meraih juara di berbagai bidang seni pada Festival & Lomba Seni Siswa Nasional tingkat kecamatan Ambulu.',
+    student: 'Tim FLS3N SDM',
+    image: imgPrestasi,
+  },
+  {
+    id: 2,
+    title: "Juara 1 Tahfidz Qur'an 2 Juz",
+    category: 'AKADEMIK',
+    level: 'Tingkat Provinsi',
+    year: '2023',
+    description: "Meraih predikat terbaik dalam kategori 2 Juz tingkat Provinsi Jawa Timur.",
+    student: 'Ahmad Fauzi (Kelas 5)',
+    image: imgTahfidz,
+  },
+  {
+    id: 3,
+    title: 'Juara 1 Olimpiade Matematika',
+    category: 'AKADEMIK',
+    level: 'Tingkat Kabupaten',
+    year: '2024',
+    description: 'Meraih juara pertama dalam kompetisi olimpiade matematika tingkat Kabupaten Jember.',
+    student: 'Rizka Aulia (Kelas 6)',
+    image: imgPembelajaran,
+  },
+  {
+    id: 4,
+    title: 'Juara 1 Lomba Menulis Cerpen',
+    category: 'AKADEMIK',
+    level: 'Tingkat Kabupaten',
+    year: '2023',
+    description: 'Karya cerpen bertema lingkungan hidup berhasil meraih juara pertama tingkat kabupaten.',
+    student: 'Nadia Putri (Kelas 5)',
+    image: imgGaleriKegiatan,
+  },
+  {
+    id: 5,
+    title: 'Juara 2 Olimpiade IPA',
+    category: 'AKADEMIK',
+    level: 'Tingkat Provinsi',
+    year: '2022',
+    description: 'Finalis terbaik olimpiade ilmu pengetahuan alam tingkat Provinsi Jawa Timur.',
+    student: 'Farel Hendra (Kelas 6)',
+    image: imgPembelajaran,
+  },
+  {
+    id: 6,
+    title: 'Juara 1 Lomba Kaligrafi',
+    category: 'AKADEMIK',
+    level: 'Tingkat Provinsi',
+    year: '2024',
+    description: 'Meraih emas dalam lomba kaligrafi kategori naskh pada kompetisi seni Islam tingkat provinsi.',
+    student: 'Zahra Nabila (Kelas 4)',
+    image: imgTahfidz,
+  },
+  {
+    id: 7,
+    title: 'Juara 2 Cerdas Cermat PAI',
+    category: 'AKADEMIK',
+    level: 'Tingkat Kabupaten',
+    year: '2023',
+    description: 'Tim cerdas cermat pendidikan agama Islam berhasil meraih peringkat kedua se-kabupaten.',
+    student: 'Tim Kelas 6',
+    image: imgGaleriKegiatan,
+  },
+  {
+    id: 8,
+    title: 'Juara 1 Pidato Bahasa Indonesia',
+    category: 'AKADEMIK',
+    level: 'Tingkat Kecamatan',
+    year: '2024',
+    description: 'Tampil memukau dengan tema nilai-nilai kebangsaan dalam lomba pidato tingkat kecamatan.',
+    student: 'Dinda Rahayu (Kelas 5)',
+    image: imgMarchingBand,
+  },
+  {
+    id: 9,
+    title: 'Juara 3 Olimpiade Bahasa Inggris',
+    category: 'AKADEMIK',
+    level: 'Tingkat Kabupaten',
+    year: '2022',
+    description: 'Berhasil masuk tiga besar dalam kompetisi bahasa Inggris antar SD se-kabupaten.',
+    student: 'Kevin Santoso (Kelas 6)',
+    image: imgPembelajaran,
+  },
+  {
+    id: 10,
+    title: 'Juara 1 Lomba Baca Puisi',
+    category: 'AKADEMIK',
+    level: 'Tingkat Kecamatan',
+    year: '2025',
+    description: 'Penampilan ekspresif dan penuh penghayatan mengantarkan menjadi juara pertama.',
+    student: 'Anisa Permata (Kelas 4)',
+    image: imgGaleriKegiatan,
+  },
+  {
+    id: 11,
+    title: "Juara 1 Tahfidz Qur'an 5 Juz",
+    category: 'AKADEMIK',
+    level: 'Tingkat Kabupaten',
+    year: '2025',
+    description: "Prestasi luar biasa menghafal 5 juz Al-Qur'an dengan tajwid terbaik se-kabupaten.",
+    student: 'Bilal Yusuf (Kelas 6)',
+    image: imgTahfidz,
+  },
+  {
+    id: 12,
+    title: 'Juara 2 Lomba Sains Kreatif',
+    category: 'AKADEMIK',
+    level: 'Tingkat Kecamatan',
+    year: '2024',
+    description: 'Proyek inovasi daur ulang sampah plastik meraih penghargaan kedua tingkat kecamatan.',
+    student: 'Tim Kelas 5',
+    image: imgPembelajaran,
+  },
+  {
+    id: 13,
+    title: 'Borong Juara O2SN Tingkat Kecamatan',
+    category: 'OLAHRAGA',
+    level: 'Tingkat Kecamatan',
+    year: '2026',
+    description: 'Meraih berbagai medali dalam Olimpiade Olahraga Siswa Nasional tingkat kecamatan Ambulu.',
+    student: 'Tim O2SN SDM',
+    image: imgPrestasiPortrait,
+  },
+  {
+    id: 14,
+    title: 'Juara 1 Atletik 100m Putra O2SN',
+    category: 'OLAHRAGA',
+    level: 'Tingkat Kabupaten',
+    year: '2024',
+    description: 'Meraih emas lari 100 meter putra dengan catatan waktu terbaik se-kabupaten.',
+    student: 'Arya Bagas (Kelas 6)',
+    image: imgPrestasiPortrait,
+  },
+  {
+    id: 15,
+    title: 'Juara 1 Pencak Silat Putra',
+    category: 'OLAHRAGA',
+    level: 'Tingkat Provinsi',
+    year: '2023',
+    description: 'Tampil gagah dan penuh teknik memukau untuk meraih emas pencak silat tingkat provinsi.',
+    student: 'Satria Wibawa (Kelas 5)',
+    image: imgTapakSuci,
+  },
+  {
+    id: 16,
+    title: 'Juara 2 Renang Gaya Bebas O2SN',
+    category: 'OLAHRAGA',
+    level: 'Tingkat Kabupaten',
+    year: '2023',
+    description: 'Catatan waktu terbaik kedua dalam nomor renang 50 meter gaya bebas putri.',
+    student: 'Syifa Aulia (Kelas 6)',
+    image: imgGaleriKegiatan,
+  },
+  {
+    id: 17,
+    title: 'Juara 1 Bulu Tangkis Putra O2SN',
+    category: 'OLAHRAGA',
+    level: 'Tingkat Kecamatan',
+    year: '2025',
+    description: 'Mendominasi pertandingan bulu tangkis putra dengan teknik smash yang tajam.',
+    student: 'Rafi Saputra (Kelas 5)',
+    image: imgHizbulWathan,
+  },
+  {
+    id: 18,
+    title: 'Juara 3 Futsal O2SN',
+    category: 'OLAHRAGA',
+    level: 'Tingkat Kabupaten',
+    year: '2022',
+    description: 'Tim futsal bermain dengan semangat juara dan berhasil meraih posisi ketiga tingkat kabupaten.',
+    student: 'Tim Futsal SDM',
+    image: imgFutsal,
+  },
+  {
+    id: 19,
+    title: 'Juara 1 Tenis Meja Putri O2SN',
+    category: 'OLAHRAGA',
+    level: 'Tingkat Kecamatan',
+    year: '2024',
+    description: 'Menguasai meja dengan smash presisi untuk meraih gelar juara putri tingkat kecamatan.',
+    student: 'Laila Fitri (Kelas 4)',
+    image: imgPrestasiPortrait,
+  },
+  {
+    id: 20,
+    title: 'Juara 2 Panahan Tingkat Provinsi',
+    category: 'OLAHRAGA',
+    level: 'Tingkat Provinsi',
+    year: '2023',
+    description: 'Keahlian memanah yang mengagumkan mengantarkan pada peringkat kedua tingkat provinsi.',
+    student: 'Haris Maulana (Kelas 6)',
+    image: imgHizbulWathan,
+  },
+]
+
+const filteredAchievements = computed(() => {
+  const q = searchQuery.value.toLowerCase()
+  return achievements.filter(item => {
+    const matchesFilter = activeFilter.value === 'SEMUA' || item.category === activeFilter.value
+    const matchesSearch = !q
+      || item.title.toLowerCase().includes(q)
+      || item.description.toLowerCase().includes(q)
+      || item.student?.toLowerCase().includes(q)
+    return matchesFilter && matchesSearch
+  })
+})
+
 useSeoMeta({
   title: "Prestasi & Penghargaan - SD Muhammadiyah 01 Ambulu",
   description:
@@ -6,41 +236,15 @@ useSeoMeta({
   ogTitle: "Prestasi & Penghargaan - SD Muhammadiyah 01 Ambulu",
   ogDescription:
     "Tradisi mencetak generasi berprestasi. 500+ trofi nasional, 98% lulusan terbaik.",
-});
+})
 
 const stats = [
-  { value: "500+", label: "Trofi Nasional" },
+  { value: "500+", label: "Trofi" },
   { value: "98%", label: "Lulusan Terbaik" },
   { value: "12", label: "Ekskul Unggulan" },
   { value: "20+", label: "Tahun Pengabdian" },
-];
+]
 
-const testimonials = [
-  {
-    quote:
-      "SD Muhammadiyah 01 Ambulu memberikan landasan karakter yang sangat kuat bagi saya. Kedisiplinan dan nilai keislaman yang diajarkan terbawa hingga saya menempuh karir sekarang.",
-    name: "dr. Hendra Wijaya",
-    role: "Alumni Tahun 2005",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuCOY7-Q_xKKPFps_a-VkfXKKzD2FGb6W1xRdSljH86a9K5jxkNs5Qh2VUOYoGbwIv1HZ-HDcGN71CIzIsvpa7e9AdwTjfxl8-Fbv5eNfOtTc9bA9b0STnCI2A1XfVWkfeSChFxOr6ZEzzzoCLXRMMWdlGacwlU-Inl4fgeT3fnyd0QNfEnqKFuxrxzNI5MwiW_W2IBNflkMWbfzkMm-cPAGdr-4FRvIIyVE2yxi6OQVpcd1n4-Gu_E8dRAgjpkaZbi7U4Gzj0hyi6g",
-  },
-  {
-    quote:
-      "Saya sangat bersyukur pernah sekolah di sini. Gurunya sangat perhatian dan mampu menemukan bakat seni saya yang saat itu belum terlihat. Juara lukis pertama saya dimulai dari sini.",
-    name: "Siti Aminah, M.Ds",
-    role: "Desainer & Alumni 2010",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuCBGeaDgkApaIc-hisB_uUv8NJ1YBZsGWvQvpSUlfirSe41ddsBSiOmUoEnldO2kQ_OhJbo4LByo_EMcR6Ag8VSoAugLjVzv-rJRqdC7yC8uXh4ukWOgc2tRcxVz4Afdpmm4wlhJFsm9JX2AXYYxQl8LYiR7HT2oT8779AVBZEkBFzEM-PLmu6oFvwfTHDQ82eOOMCMV6Ne0qhdIQygXdGbmhYo3SYoh0zSTNsl_x0a1qD7gJgSXjmjOOafIh0XWF3OjC0fHzBAcGk",
-  },
-  {
-    quote:
-      "Ekosistem belajarnya sangat kompetitif namun tetap suportif. Saya diajarkan untuk tidak pernah takut gagal dalam berkompetisi. Semangat juara itu masih ada dalam diri saya.",
-    name: "Ir. Rizky Pratama",
-    role: "Alumni Tahun 2008",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuDKy5j7x_LayIcmdtnjTLRyLgezl7CosIKu1jZHRw-SEV0ErlGcfo0kFmn1GZGTu8G9ZGKp3tipkTr6ISxIOVYkLkPvq41ykMzkcbOCSBKWq3-uQ62inBlodh8UApuZrVbL8S40l893GUq_XQa9aE6wynKhAE6Pinl-CXls1TfSnmWN_BAKsna4DzROSgMU10VOMeaFlWB_lBK5WTubRjSfZAbKK7tNkighmcRcDUWlYgKBD38YmSCg6zpm9COT5Y-fFar4D9BjN-o",
-  },
-];
 </script>
 
 <template>
@@ -83,187 +287,141 @@ const testimonials = [
       </div>
     </section>
 
-    <!-- Achievement Bento Grid -->
+    <!-- Achievements Section -->
     <section class="max-w-7xl mx-auto px-6 py-20">
+      <!-- Header -->
+      <div class="flex flex-col gap-6 mb-10">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+          <div class="max-w-xl">
+            <h2 class="font-headline text-3xl font-bold text-primary mb-3 leading-none">
+              Daftar Prestasi
+            </h2>
+            <p class="font-body text-lg text-on-surface-variant">
+              Sorotan prestasi akademik dan non-akademik siswa-siswi terbaik kami
+              di tingkat regional maupun nasional.
+            </p>
+          </div>
+
+          <!-- Filter buttons -->
+          <div class="flex gap-2 flex-shrink-0">
+            <button
+              v-for="filter in filters"
+              :key="filter"
+              :class="[
+                'px-4 py-2 rounded-full font-label text-xs font-medium cursor-pointer transition-colors whitespace-nowrap',
+                activeFilter === filter
+                  ? 'bg-primary text-white font-bold'
+                  : 'bg-surface-container-high text-on-surface-variant hover:bg-surface-container-highest'
+              ]"
+              @click="activeFilter = filter"
+            >{{ filter }}</button>
+          </div>
+        </div>
+
+        <!-- Search bar -->
+        <div class="relative max-w-md">
+          <AppIcon
+            name="search"
+            class="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant text-xl pointer-events-none"
+          />
+          <input
+            v-model="searchQuery"
+            type="text"
+            placeholder="Cari prestasi, siswa, atau kategori..."
+            class="w-full pl-12 pr-4 py-3 rounded-full bg-surface-container-high font-body text-sm text-on-surface placeholder:text-on-surface-variant focus:outline-none focus:ring-2 focus:ring-primary transition"
+          />
+          <button
+            v-if="searchQuery"
+            class="absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-on-surface"
+            @click="searchQuery = ''"
+          >
+            <AppIcon name="close" class="text-lg" />
+          </button>
+        </div>
+
+        <!-- Result count -->
+        <p class="font-label text-sm text-on-surface-variant">
+          Menampilkan <span class="font-bold text-primary">{{ filteredAchievements.length }}</span> prestasi
+        </p>
+      </div>
+
+      <!-- Achievement Cards Grid -->
       <div
-        class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6"
+        v-if="filteredAchievements.length > 0"
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
       >
-        <div class="max-w-xl">
-          <h2
-            class="font-headline text-3xl font-bold text-primary mb-4 leading-none"
-          >
-            Pencapaian Terbaru
-          </h2>
-          <p class="font-body text-lg text-on-surface-variant">
-            Sorotan prestasi akademik dan non-akademik siswa-siswi terbaik kami
-            di tingkat regional maupun nasional.
-          </p>
-        </div>
-        <div class="flex gap-2">
-          <span
-            class="inline-flex items-center gap-1 bg-surface-container-high px-3 py-1 rounded-full font-label text-xs font-bold text-primary"
-            >SEMUA</span
-          >
-          <span
-            class="inline-flex items-center gap-1 bg-white px-3 py-1 rounded-full font-label text-xs font-medium text-on-surface-variant hover:bg-surface-container transition-colors cursor-pointer"
-            >AKADEMIK</span
-          >
-          <span
-            class="inline-flex items-center gap-1 bg-white px-3 py-1 rounded-full font-label text-xs font-medium text-on-surface-variant hover:bg-surface-container transition-colors cursor-pointer"
-            >OLAHRAGA</span
-          >
-        </div>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
-        <!-- Main Featured Card -->
         <div
-          class="md:col-span-8 group relative overflow-hidden rounded-2xl bg-primary text-white aspect-[16/9] shadow-lg"
+          v-for="item in filteredAchievements"
+          :key="item.id"
+          class="bg-surface-container-low rounded-2xl overflow-hidden flex flex-col hover:shadow-md transition-shadow border border-outline-variant/30"
         >
-          <img
-            src="~/assets/images/prestasi.jpeg"
-            alt="Borong Juara FLS3N dan O2SN Tahun 2026 tingkat SD negeri dan swasta se-Kecamatan Ambulu"
-            class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
-            loading="lazy"
-          />
-          <div
-            class="absolute inset-0 bg-gradient-to-t from-primary via-transparent to-transparent"
-          />
-          <div class="absolute bottom-0 left-0 p-8">
-            <AppBadge class="mb-4">Tingkat Kecamatan</AppBadge>
-            <h3 class="font-headline text-3xl font-bold mb-2">
-              Borong Juara FLS3N dan O2SN Tahun 2026
-            </h3>
-            <p class="font-body text-white/80 max-w-lg hidden md:block">
-              Keberhasilan ini menjadi bukti nyata komitmen sekolah dalam
-              mengembangkan potensi akademik maupun non-akademik peserta didik
-              secara seimbang.
-            </p>
+          <!-- Card image -->
+          <div class="h-44 overflow-hidden flex-shrink-0">
+            <img
+              :src="item.image"
+              :alt="item.title"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+            />
           </div>
-        </div>
 
-        <!-- Side Card -->
-        <div
-          class="md:col-span-4 bg-surface-container-lowest p-6 rounded-2xl border-l-4 border-secondary shadow-sm hover:shadow-md transition-shadow"
-        >
-          <div class="flex justify-between items-start mb-6">
-            <AppIcon name="emoji_events" class="text-secondary text-4xl" />
-            <span
-              class="font-label text-[10px] font-bold text-on-surface-variant opacity-60"
-              >OKT 2023</span
-            >
+          <div class="p-6 flex flex-col gap-4 flex-1">
+          <div class="flex justify-between items-start gap-2">
+            <AppBadge variant="subtle">{{ item.level }}</AppBadge>
+            <span class="font-label text-xs font-bold text-on-surface-variant flex-shrink-0">{{ item.year }}</span>
           </div>
-          <h4 class="font-headline text-xl font-bold text-primary mb-3">
-            Juara 1 Tahfidz Qur'an
-          </h4>
-          <p class="font-body text-on-surface-variant mb-4">
-            Ananda Ahmad meraih predikat terbaik dalam kategori 2 Juz tingkat
-            Provinsi Jawa Timur.
-          </p>
-          <div class="flex items-center gap-2">
-            <div
-              class="w-8 h-8 rounded-full bg-surface-container-high overflow-hidden"
-            >
-              <img
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgj3O9NQ0vBPtRnWHWHTulopR0K3BD1sG8YrYGuNm_TMWmzrTmvieSdkDo99cbR92wFjGWN63hjoF0OFgpQGQSvzATYPNjtYxJfE2Hfue6c_exb-H3EYO9D3Ls9l7bAlJSe_OvLFnkdJJQWA5fGi8oxNz3qBPi7WlvN4dO-q-rr3ONpvUvExPpPV7JeuXWFXlnpBPqc7hwVGAtioorpq2v9PS-tc8rUpCLQJfrVIxDzgbl2Y7LV33gwjQFpDPm3gQk2OLvXrTdvgI"
-                alt="Ahmad Fauzi"
-                class="w-full h-full object-cover"
-                loading="lazy"
-              />
-            </div>
-            <span class="font-label text-xs font-bold text-primary"
-              >Ahmad Fauzi (Kelas 5)</span
-            >
-          </div>
-        </div>
 
-        <!-- Bottom Cards -->
-        <div
-          class="md:col-span-4 bg-surface-container-high p-8 rounded-2xl flex flex-col justify-center"
-        >
-          <p class="serif-italic text-2xl text-primary mb-2">
-            "Pendidikan adalah paspor ke masa depan."
-          </p>
-          <p
-            class="font-label text-sm text-secondary font-bold uppercase tracking-tighter"
-          >
-            — Malcolm X
-          </p>
-        </div>
-
-        <div
-          class="md:col-span-4 group relative overflow-hidden rounded-2xl bg-white aspect-square md:aspect-auto shadow-sm"
-        >
-          <img
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLGXYybPwRmcxIUvzQYa2pgZFmWtlQ4FnmiEQK_96-7Al8IfgCFE0TwklZ_OGan-PiuQHuF8mHBW6Q0TVSBOb7jddXjraBlNaFmvEY7fEORoNzfMZg3B84dBfO6tB2hi6FNHhqjorxKV7ApMmInsHyNEYkryXI7vCDQAAqI5_pVzsf8ggmibYpYCZmIo4Ha30EslCjv9kZvrn4yEAgKgvXBswJ8nmMk2EIrllgH0BvBIdhelmwok7TUZN7GmP76mtgCND_vEbNymQ"
-            alt="Galeri Prestasi"
-            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-            loading="lazy"
-          />
-          <div
-            class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors"
-          />
-          <div
-            class="absolute inset-0 flex items-center justify-center p-6 text-center"
-          >
-            <h5
-              class="font-headline text-xl font-bold text-white text-shadow-premium"
-            >
-              Galeri Prestasi Selengkapnya
-            </h5>
-          </div>
-        </div>
-
-        <div
-          class="md:col-span-4 bg-primary-container text-white p-6 rounded-2xl flex flex-col justify-between"
-        >
-          <div>
-            <div class="flex items-center gap-2 mb-4">
+          <div class="flex items-start gap-3">
+            <div class="w-10 h-10 rounded-xl bg-secondary-container flex items-center justify-center flex-shrink-0">
               <AppIcon
-                name="workspace_premium"
-                class="text-secondary-container"
+                :name="item.category === 'OLAHRAGA' ? 'sports' : 'emoji_events'"
+                :filled="true"
+                class="text-secondary text-xl"
               />
-              <span
-                class="font-label text-xs font-bold uppercase tracking-widest text-secondary-container"
-                >Akreditasi A</span
-              >
             </div>
-            <h5 class="font-headline text-xl font-bold mb-2">Lembaga Unggul</h5>
-            <p class="font-body text-white/70 text-sm">
-              Terstandarisasi nasional dengan fasilitas pendukung bakat minat
-              terlengkap di Ambulu.
-            </p>
+            <div>
+              <span
+                :class="[
+                  'font-label text-[10px] font-bold uppercase tracking-widest',
+                  item.category === 'OLAHRAGA' ? 'text-tertiary' : 'text-secondary'
+                ]"
+              >{{ item.category }}</span>
+              <h4 class="font-headline text-base font-bold text-primary leading-snug mt-0.5">
+                {{ item.title }}
+              </h4>
+            </div>
           </div>
-          <NuxtLink
-            to="/kegiatan"
-            class="mt-6 font-label text-xs font-bold flex items-center gap-2 hover:translate-x-2 transition-transform"
+
+          <p class="font-body text-sm text-on-surface-variant leading-relaxed">
+            {{ item.description }}
+          </p>
+
+          <div
+            v-if="item.student"
+            class="mt-auto pt-4 border-t border-outline-variant/40 flex items-center gap-2"
           >
-            PELAJARI KURIKULUM
-            <AppIcon name="arrow_forward" class="text-sm" />
-          </NuxtLink>
+            <AppIcon name="person" class="text-sm text-on-surface-variant" />
+            <span class="font-label text-xs font-bold text-on-surface-variant">{{ item.student }}</span>
+          </div>
+          </div><!-- /p-6 -->
         </div>
       </div>
-    </section>
 
-    <!-- Alumni Testimonials -->
-    <section class="bg-surface-container-low py-20 px-6">
-      <div class="max-w-7xl mx-auto">
-        <div class="text-center mb-16">
-          <h2 class="font-headline text-3xl font-bold text-primary mb-4">
-            Suara Alumni
-          </h2>
-          <div class="w-20 h-1 bg-secondary mx-auto" />
+      <!-- Empty state -->
+      <div v-else class="text-center py-24 flex flex-col items-center gap-4">
+        <div class="w-20 h-20 rounded-full bg-surface-container-high flex items-center justify-center">
+          <AppIcon name="search_off" class="text-4xl text-on-surface-variant" />
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <TestimonialCard
-            v-for="testimonial in testimonials"
-            :key="testimonial.name"
-            :quote="testimonial.quote"
-            :name="testimonial.name"
-            :role="testimonial.role"
-            :image="testimonial.image"
-          />
+        <div>
+          <h3 class="font-headline text-xl font-bold text-on-surface mb-2">Tidak ada hasil</h3>
+          <p class="font-body text-sm text-on-surface-variant">
+            Coba ubah kata kunci atau pilih kategori yang berbeda.
+          </p>
         </div>
+        <button
+          class="mt-2 px-5 py-2 rounded-full bg-primary text-white font-label text-sm font-bold"
+          @click="searchQuery = ''; activeFilter = 'SEMUA'"
+        >Reset Pencarian</button>
       </div>
     </section>
 
