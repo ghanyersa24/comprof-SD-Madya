@@ -23,8 +23,8 @@ export default defineNuxtConfig({
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',
       meta: [
-        { property: 'og:image', content: 'https://sd-madya.ambulu.or.id/bangunan_sekolah.png' },
-        { name: 'twitter:image', content: 'https://sd-madya.ambulu.or.id/bangunan_sekolah.png' }
+        { property: 'og:image', content: 'https://i.ibb.co.com/VpqT87KT/Gemini-Generated-Image-7ui4j87ui4j87ui4.png' },
+        { name: 'twitter:image', content: 'https://i.ibb.co.com/VpqT87KT/Gemini-Generated-Image-7ui4j87ui4j87ui4.png' }
       ]
     },
   },
