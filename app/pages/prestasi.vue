@@ -132,10 +132,9 @@ const testimonials = [
           <div class="absolute bottom-0 left-0 p-8">
             <AppBadge class="mb-4">Tingkat Kecamatan</AppBadge>
             <h3 class="font-headline text-3xl font-bold mb-2">
-              Borong Juara FLS3N dan O2SN Tahun 2026 tingkat SD negeri dan
-              swasta se-Kecamatan Ambulu
+              Borong Juara FLS3N dan O2SN Tahun 2026
             </h3>
-            <p class="font-body text-white/80 max-w-lg">
+            <p class="font-body text-white/80 max-w-lg hidden md:block">
               Keberhasilan ini menjadi bukti nyata komitmen sekolah dalam
               mengembangkan potensi akademik maupun non-akademik peserta didik
               secara seimbang.

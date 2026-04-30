@@ -11,34 +11,23 @@ useSeoMeta({
 <template>
   <div>
     <!-- Hero Section -->
-    <section
-      class="relative min-h-[751px] flex items-center overflow-hidden hero-gradient -mt-20 pt-20"
-    >
+    <section class="relative min-h-[751px] flex items-center overflow-hidden hero-gradient -mt-20 pt-20">
       <div class="absolute inset-0 opacity-20">
-        <img
-          src="~/assets/images/bangunan_sekolah.png"
-          alt="Gedung SD Muhammadiyah 01 Ambulu"
-          class="w-full h-full object-cover"
-        />
+        <img src="~/assets/images/bangunan_sekolah.png" alt="Gedung SD Muhammadiyah 01 Ambulu"
+          class="w-full h-full object-cover" />
       </div>
-      <div
-        class="relative max-w-7xl mx-auto px-6 py-20 z-10 grid md:grid-cols-2 gap-12 items-center"
-      >
+      <div class="relative max-w-7xl mx-auto px-6 py-20 z-10 grid md:grid-cols-2 gap-12 items-center">
         <div class="space-y-8">
           <AppBadge variant="subtle" size="md">
             <AppIcon name="stars" :filled="true" class="text-sm" />
             Sekolah Juara
           </AppBadge>
 
-          <h1
-            class="font-headline font-extrabold text-5xl md:text-7xl text-white leading-tight tracking-tighter"
-          >
+          <h1 class="font-headline font-extrabold text-5xl md:text-7xl text-white leading-tight tracking-tighter">
             SD Muhammadiyah 01 Ambulu
           </h1>
 
-          <p
-            class="font-body text-xl md:text-2xl text-white/90 leading-relaxed italic max-w-xl"
-          >
+          <p class="font-body text-xl md:text-2xl text-white/90 leading-relaxed italic max-w-xl">
             "Kokoh dalam Spiritual, Unggul dalam Intelektual."
           </p>
 
@@ -54,33 +43,18 @@ useSeoMeta({
         </div>
 
         <div class="hidden md:block relative">
-          <div
-            class="relative z-10 rounded-2xl overflow-hidden shadow-2xl border-4 border-white/10"
-          >
-            <img
-              src="~/assets/images/prestasi_portrait.png"
-              alt="Siswa SD Muhammadiyah 01 Ambulu"
-              class="w-full aspect-[4/5] object-cover"
-            />
+          <div class="relative z-10 rounded-2xl overflow-hidden shadow-2xl border-4 border-white/10">
+            <img src="~/assets/images/prestasi_portrait.png" alt="Siswa SD Muhammadiyah 01 Ambulu"
+              class="w-full aspect-[4/5] object-cover" />
           </div>
           <!-- Achievement Float Card -->
-          <div
-            class="absolute -bottom-10 -left-10 bg-white p-6 rounded-2xl shadow-2xl max-w-xs z-20"
-          >
+          <div class="absolute -bottom-10 -left-10 bg-white p-6 rounded-2xl shadow-2xl max-w-xs z-20">
             <div class="flex gap-4 items-center">
-              <div
-                class="w-12 h-12 bg-secondary-container rounded-full flex items-center justify-center"
-              >
-                <AppIcon
-                  name="workspace_premium"
-                  :filled="true"
-                  class="text-primary"
-                />
+              <div class="w-12 h-12 bg-secondary-container rounded-full flex items-center justify-center">
+                <AppIcon name="workspace_premium" :filled="true" class="text-primary" />
               </div>
               <div>
-                <p
-                  class="font-headline font-bold text-primary text-lg leading-tight"
-                >
+                <p class="font-headline font-bold text-primary text-lg leading-tight">
                   Akreditasi A
                 </p>
                 <p class="font-body text-on-surface-variant text-sm">
@@ -99,27 +73,17 @@ useSeoMeta({
         <div class="grid md:grid-cols-12 gap-16 items-center">
           <div class="md:col-span-5 order-2 md:order-1">
             <div class="relative">
-              <div
-                class="absolute inset-0 bg-primary-container rounded-3xl -rotate-3 scale-105 opacity-10"
-              />
-              <img
-                src="~/assets/images/pembelajaran.png"
-                alt="Guru mengajar di kelas"
-                class="relative z-10 rounded-3xl shadow-xl aspect-square object-cover"
-                loading="lazy"
-              />
+              <div class="absolute inset-0 bg-primary-container rounded-3xl -rotate-3 scale-105 opacity-10" />
+              <img src="~/assets/images/pembelajaran.png" alt="Guru mengajar di kelas"
+                class="relative z-10 rounded-3xl shadow-xl aspect-square object-cover" loading="lazy" />
             </div>
           </div>
           <div class="md:col-span-7 order-1 md:order-2 space-y-8">
             <SectionLabel text="Profil Sekolah" />
-            <h2
-              class="font-headline font-bold text-4xl text-primary leading-tight"
-            >
+            <h2 class="font-headline font-bold text-4xl text-primary leading-tight">
               Membina Akhlak, Mengasah Logika Sejak Dini
             </h2>
-            <p
-              class="font-body text-xl text-on-surface-variant leading-relaxed"
-            >
+            <p class="font-body text-xl text-on-surface-variant leading-relaxed">
               Berdiri dengan semangat dakwah Muhammadiyah, kami mengintegrasikan
               kurikulum nasional dengan nilai-nilai spiritual yang kokoh.
               Sejarah panjang kami di Ambulu telah melahirkan ribuan lulusan
@@ -164,9 +128,7 @@ useSeoMeta({
           <h2 class="font-headline font-bold text-4xl text-primary">
             Prestasi Membanggakan
           </h2>
-          <p
-            class="font-body text-lg text-on-surface-variant max-w-2xl mx-auto"
-          >
+          <p class="font-body text-lg text-on-surface-variant max-w-2xl mx-auto">
             Dedikasi siswa dan guru kami dalam meraih keunggulan di berbagai
             bidang kompetisi.
           </p>
@@ -175,24 +137,18 @@ useSeoMeta({
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[250px]">
           <!-- Main Achievement -->
           <div
-            class="md:col-span-2 md:row-span-2 bg-primary-container rounded-3xl p-8 flex flex-col justify-end relative overflow-hidden group"
-          >
-            <img
-              src="~/assets/images/prestasi.jpeg"
+            class="md:col-span-2 md:row-span-2 bg-primary-container rounded-3xl p-8 flex flex-col justify-end relative overflow-hidden group">
+            <img src="~/assets/images/prestasi.jpeg"
               alt="Borong Juara FLS3N dan O2SN Tahun 2026 tingkat SD negeri dan swasta se-Kecamatan Ambulu"
               class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:scale-110 transition-transform duration-500"
-              loading="lazy"
-            />
-            <div
-              class="absolute inset-0 bg-gradient-to-t from-primary to-transparent"
-            />
+              loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-primary to-transparent" />
             <div class="relative z-10 space-y-4">
               <AppBadge>Tingkat Kecamatan</AppBadge>
               <h3 class="font-headline font-bold text-3xl text-white">
-                Borong Juara FLS3N dan O2SN Tahun 2026 tingkat SD negeri dan
-                swasta se-Kecamatan Ambulu
+                Borong Juara FLS3N dan O2SN Tahun 2026
               </h3>
-              <p class="font-body text-white/80 max-w-lg">
+              <p class="font-body text-white/80 max-w-lg hidden md:block">
                 Keberhasilan ini menjadi bukti nyata komitmen sekolah dalam
                 mengembangkan potensi akademik maupun non-akademik peserta didik
                 secara seimbang.
@@ -201,22 +157,13 @@ useSeoMeta({
           </div>
 
           <!-- Small Achievement 1 -->
-          <div
-            class="relative rounded-3xl overflow-hidden flex flex-col justify-between min-h-[220px] group"
-          >
-            <img
-              src="~/assets/images/tahfidz.png"
-              alt="Program Tahfidz Quran SD Muhammadiyah 01 Ambulu"
+          <div class="relative rounded-3xl overflow-hidden flex flex-col justify-between min-h-[220px] group">
+            <img src="~/assets/images/tahfidz.png" alt="Program Tahfidz Quran SD Muhammadiyah 01 Ambulu"
               class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              loading="lazy"
-            />
-            <div
-              class="absolute inset-0 bg-gradient-to-t from-primary via-primary/60 to-primary/10"
-            />
+              loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-primary via-primary/60 to-primary/10" />
             <div class="relative z-10 p-6 flex flex-col justify-between h-full">
-              <div
-                class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center"
-              >
+              <div class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
                 <AppIcon name="menu_book" :filled="true" class="text-white" />
               </div>
               <div class="mt-4">
@@ -231,22 +178,13 @@ useSeoMeta({
           </div>
 
           <!-- Small Achievement 2 -->
-          <div
-            class="relative rounded-3xl overflow-hidden flex flex-col justify-between min-h-[220px] group"
-          >
-            <img
-              src="~/assets/images/marching_band.png"
-              alt="Ekskul Unggulan SD Muhammadiyah 01 Ambulu"
+          <div class="relative rounded-3xl overflow-hidden flex flex-col justify-between min-h-[220px] group">
+            <img src="~/assets/images/marching_band.png" alt="Ekskul Unggulan SD Muhammadiyah 01 Ambulu"
               class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              loading="lazy"
-            />
-            <div
-              class="absolute inset-0 bg-gradient-to-t from-secondary via-secondary/60 to-secondary/10"
-            />
+              loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-secondary via-secondary/60 to-secondary/10" />
             <div class="relative z-10 p-6 flex flex-col justify-between h-full">
-              <div
-                class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center"
-              >
+              <div class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
                 <AppIcon name="music_note" :filled="true" class="text-white" />
               </div>
               <div class="mt-4">
@@ -264,12 +202,8 @@ useSeoMeta({
     </section>
 
     <!-- CTA Section -->
-    <CtaSection
-      title="Mulai Perjalanan Prestasi Anak Anda Bersama Kami"
+    <CtaSection title="Mulai Perjalanan Prestasi Anak Anda Bersama Kami"
       subtitle="Pendaftaran Peserta Didik Baru (PPDB) Tahun Ajaran 2026/2027 telah dibuka. Kuota terbatas."
-      cta-primary="Daftar Online Sekarang"
-      cta-secondary="Panduan PPDB"
-      cta-primary-link="/kontak"
-    />
+      cta-primary="Daftar Online Sekarang" cta-secondary="Panduan PPDB" cta-primary-link="/kontak" />
   </div>
 </template>
