@@ -23,8 +23,8 @@ export default defineNuxtConfig({
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',
       meta: [
-        { property: 'og:image', content: 'https://i.ibb.co.com/VpqT87KT/Gemini-Generated-Image-7ui4j87ui4j87ui4.png' },
-        { name: 'twitter:image', content: 'https://i.ibb.co.com/VpqT87KT/Gemini-Generated-Image-7ui4j87ui4j87ui4.png' }
+        { property: 'og:image', content: 'https://pwmu.co/wp-content/uploads/2026/04/WhatsApp-Image-2026-04-19-at-6.37.00-PM-1024x602.jpeg' },
+        { name: 'twitter:image', content: 'https://pwmu.co/wp-content/uploads/2026/04/WhatsApp-Image-2026-04-19-at-6.37.00-PM-1024x602.jpeg' }
       ]
     },
   },
