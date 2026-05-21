@@ -7,57 +7,26 @@ useSeoMeta({
   ogDescription: 'Jejak langkah dan pencapaian kami dalam mendidik generasi rabbani.',
 })
 
-const filters = ['Semua Momen', 'Kegiatan Belajar', 'Ekstrakurikuler', 'Prestasi Siswa', 'Fasilitas']
+import type { ApiGallery } from '~/composables/api/types'
+
+const { data: galleriesData } = await useGalleries()
+const galleryItems = computed<ApiGallery[]>(() => galleriesData.value?.data ?? [])
+
+const categoryLabelMap: Record<string, string> = {
+  Activity: 'Kegiatan',
+  Achievement: 'Prestasi Siswa',
+  Facility: 'Fasilitas',
+  Other: 'Lainnya',
+}
+
+const filters = ['Semua Momen', 'Kegiatan', 'Prestasi Siswa', 'Fasilitas', 'Lainnya']
 const activeFilter = ref('Semua Momen')
 const showVideo = ref(false)
 
-const galleryItems = [
-  {
-    src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCGqDIgNtmgiYHiftSbSWwGB2MiuURHb7jMUtoMeEAZ6CeIaF5W8XhOe8ZHHaR_NHSJITH91Hc13K5xVfCRTv8Ef-qYBUruPMdooHfcvXQVT6kTJbpZvgai42MGt7GvFZobq7txkFBBlM3LB_-dmD_vmBWAqmvW-DFu48AdwtGCmnbQIXmbhJ0waMabRIDISLLfcyUpGt7cjEHiEBDkvmocukYbwTFSCNTTVHgKgxTzFaxMHcWkr432WB0Cb4JM50aNISAqfacKv20',
-    alt: 'Metode Pembelajaran Aktif',
-    label: 'Akademik',
-    title: 'Metode Pembelajaran Aktif',
-    category: 'Kegiatan Belajar',
-    span: 'col-span-2 row-span-2',
-  },
-  {
-    src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuA3JEufzyVd5dBXD1EjtkIqhCyrQfHbLdZOom3rbTLKQmSNglhiwuU7-Zu4YZgyzjq-kCqvNS-SdYRLpuPDr0sl96BZM68KYfET3HTLQkJvwMy5bTxWbbGe5j4jGi5wnTE9welYsnZjPWdiey3RuCrG8h8x0_cYuC_i0Yi-eMkjExC3ikyIxjK_gWHWaINJOD3M-OP6KOwbdRKYWfvpTWEKSNP4tWonw5oYbmJ7rxKHInHkMRwgB787m76vLl8dgRptPyrH6GrSUlI',
-    alt: 'Panahan Sunnah',
-    label: 'Ekskul',
-    title: 'Panahan Sunnah',
-    category: 'Ekstrakurikuler',
-    span: 'col-span-1 row-span-2',
-  },
-  {
-    src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuD3m8_Z7Yo7j9X2oFhQsgo07CqG-w65oCnZf0GLlSq_qk29hcoMRIH3t_hhjXJr6upAm6_DprfRijlCfIxH2OhcvETb5SCZtsw5Gbzy-TL0JmOT7OxDi-dwxRlMALMHRa_9fywFPnNi-aa85gsba1SCMOuXcIvQiz6mI2uDgokwJkexNeRIm9ENOiMG2NQEC-tiT7goBQIlmN1BfNt_pTEf10JKQyppjjaVAzbMcyBDia3ab-4PdnT0_01shVkYVKc9WZvfbPdRXec',
-    alt: 'Perpustakaan',
-    category: 'Fasilitas',
-    span: 'col-span-1 row-span-1',
-  },
-  {
-    src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDoDp3i603dOs1cDvdCnNaS_cEEyM8zJh6-eE6c0KyDHjl9d2-X1MgL0XfmMfM9N4sjv_OAP1Wge-wPKMAxYHrlC5lAIFbU8DGNhZpCL-APEoJqc0ryRKrBIDfgQllqWqi6NRQF4tmzhZJU61ql8cddhgj3QBO36XlBcQLhvkZzvJNPDZvyznz-JriB6JPg8PJErtAXCT1pNxu-VlDIDPs865wMKfOAe4jJUCWDoiJg79IeDpx8nTWxs0vCRAAjZBezyPMzYEOZiyI',
-    alt: 'Lab Komputer',
-    category: 'Fasilitas',
-    span: 'col-span-1 row-span-1',
-  },
-  {
-    src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCiKRVWL8E1Ar1AscjO5uDY_UaxdlXQ_vV6Uicys-XR898qD-ltooIFVud-S13ITRqPtaIWHnfYrvRAdbm6TDgpRwRzP5wz3zRUp928SUTnJoEn2hfbKVnAyDF--6Ot7B2GCwGiRMi36P-F2fHd6QRk5BMmsI8uWxHG6gsUT6I1SoPsWW0Cb8ohIHpLVR9hZmQCAW4gDiuZnw4n5iXa-4rgIU7q25ukzfPyyNAhHews5GQtARf2X9grhUD9JvEaMFEOriNt0RHOPOU',
-    alt: 'Kebun Sekolah',
-    category: 'Fasilitas',
-    span: 'col-span-1 row-span-1',
-  },
-  {
-    src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAaXB7wBr_EU72v4CiHCwKbmqReCAyNhuAq6kQPLzSSe30kl1Jd8uNeQFISZ_HqHufPi1suGPqiaCcsBOVP15x8LQgEqj4iL06cjg6PNMYmZEfGjGFCc3xRfhc0SB-oUEA1sfL8En7DD3xyFdAs_cz099u7mqVwo046yQkOZ4WjggQGjPgqHisQl0z8c7GnLf9mErnNwXtlqVjUZRmLV8FuqeR_zT2zSCMNRWO-IfRWz8Hjip5GdPdvotEpVePsf5nGz5BPOZPxm5g',
-    alt: 'Ruang Seni',
-    category: 'Kegiatan Belajar',
-    span: 'col-span-1 row-span-1',
-  },
-]
-
 const filteredItems = computed(() =>
   activeFilter.value === 'Semua Momen'
-    ? galleryItems
-    : galleryItems.filter(item => item.category === activeFilter.value)
+    ? galleryItems.value
+    : galleryItems.value.filter(item => categoryLabelMap[item.category] === activeFilter.value)
 )
 </script>
 
@@ -121,14 +90,17 @@ const filteredItems = computed(() =>
     <!-- Bento Photo Grid -->
     <section class="px-6 max-w-7xl mx-auto">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 auto-rows-[200px] md:auto-rows-[250px]">
-        <div v-for="(item, index) in filteredItems" :key="index"
-          :class="[item.span, 'rounded-3xl overflow-hidden relative group bg-surface-container-low']">
-          <img :src="item.src" :alt="item.alt"
+        <div v-for="(item, index) in filteredItems" :key="item.id"
+          :class="[index === 0 ? 'col-span-2 row-span-2' : 'col-span-1 row-span-1', 'rounded-3xl overflow-hidden relative group bg-surface-container-low']">
+          <img v-if="item.image" :src="item.image" :alt="item.title"
             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy" />
-          <div v-if="item.label"
+          <div v-else class="w-full h-full bg-surface-container-high flex items-center justify-center">
+            <AppIcon name="image" class="text-4xl text-on-surface-variant" />
+          </div>
+          <div
             class="absolute inset-0 bg-gradient-to-t from-primary/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6">
             <span class="font-label text-[10px] text-secondary-container font-bold tracking-widest uppercase">{{
-              item.label
+              categoryLabelMap[item.category] ?? item.category
               }}</span>
             <h4 class="font-headline text-xl text-white font-bold">{{ item.title }}</h4>
           </div>

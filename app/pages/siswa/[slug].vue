@@ -1,14 +1,13 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { studentBySlug, studentInitials, students } from '~/data/students'
-import { achievementsByStudentId, type AchievementLevel } from '~/data/achievements'
+import type { ApiStudent, ApiAchievement } from '~/composables/api/types'
 
 const route = useRoute()
 const slug = computed(() => String(route.params.slug))
 
-const student = computed(() => studentBySlug(slug.value))
+const { data, error } = await useStudent(slug)
 
-if (!student.value) {
+if (error.value) {
   throw createError({
     statusCode: 404,
     statusMessage: 'Siswa tidak ditemukan',
@@ -16,47 +15,51 @@ if (!student.value) {
   })
 }
 
+const student = computed<ApiStudent | null>(() => data.value?.data ?? null)
+
+function studentInitials(name: string): string {
+  return name.split(' ').slice(0, 2).map(n => n[0]).join('').toUpperCase()
+}
+
 const studentAchievements = computed(() =>
-  achievementsByStudentId(student.value!.id)
+  (student.value?.achievements ?? [])
     .slice()
-    .sort((a, b) => Number(b.year) - Number(a.year))
+    .sort((a, b) => Number(b.year ?? 0) - Number(a.year ?? 0))
 )
 
 const achievementsByYear = computed(() => {
-  const groups = new Map<string, typeof studentAchievements.value>()
+  const groups = new Map<string, ApiAchievement[]>()
   for (const a of studentAchievements.value) {
-    if (!groups.has(a.year)) groups.set(a.year, [])
-    groups.get(a.year)!.push(a)
+    const year = a.year ?? 'Unknown'
+    if (!groups.has(year)) groups.set(year, [])
+    groups.get(year)!.push(a)
   }
   return Array.from(groups.entries())
 })
 
-const levelRank: Record<AchievementLevel, number> = {
-  'Tingkat Kecamatan': 1,
-  'Tingkat Kabupaten': 2,
-  'Tingkat Provinsi': 3,
-  'Tingkat Nasional': 4,
+const levelRank: Record<string, number> = {
+  'District Level': 1,
+  'Regency Level': 2,
+  'Provincial Level': 3,
+  'National Level': 4,
 }
 
 const stats = computed(() => {
   const all = studentAchievements.value
-  const akademik = all.filter(a => a.category === 'AKADEMIK').length
-  const olahraga = all.filter(a => a.category === 'OLAHRAGA').length
-  const highest = all.reduce<AchievementLevel | null>((acc, a) => {
+  const academic = all.filter(a => a.category === 'ACADEMIC').length
+  const sport = all.filter(a => a.category === 'SPORT').length
+  const highest = all.reduce<string | null>((acc, a) => {
+    if (!a.level) return acc
     if (!acc) return a.level
-    return levelRank[a.level] > levelRank[acc] ? a.level : acc
+    return (levelRank[a.level] ?? 0) > (levelRank[acc] ?? 0) ? a.level : acc
   }, null)
   return {
     total: all.length,
-    akademik,
-    olahraga,
+    academic,
+    sport,
     highest: highest ?? '-',
   }
 })
-
-const otherStudents = computed(() =>
-  students.filter(s => s.id !== student.value!.id).slice(0, 4)
-)
 
 useSeoMeta({
   title: () => `${student.value?.name} - Profil Siswa | SD Muhammadiyah 01 Ambulu`,
@@ -119,7 +122,7 @@ useSeoMeta({
               {{ student.name }}
             </h1>
             <p class="font-label text-sm font-bold text-secondary-container uppercase tracking-widest mb-6">
-              {{ student.kelas }}
+              {{ student.grade }}
             </p>
             <p
               v-if="student.quote"
@@ -140,11 +143,11 @@ useSeoMeta({
           <div class="font-label text-xs uppercase tracking-widest text-on-surface-variant">Total Prestasi</div>
         </div>
         <div class="bg-surface-container-low rounded-2xl p-6 border border-outline-variant/30">
-          <div class="font-headline text-3xl font-bold text-primary mb-1">{{ stats.akademik }}</div>
+          <div class="font-headline text-3xl font-bold text-primary mb-1">{{ stats.academic }}</div>
           <div class="font-label text-xs uppercase tracking-widest text-on-surface-variant">Prestasi Akademik</div>
         </div>
         <div class="bg-surface-container-low rounded-2xl p-6 border border-outline-variant/30">
-          <div class="font-headline text-3xl font-bold text-primary mb-1">{{ stats.olahraga }}</div>
+          <div class="font-headline text-3xl font-bold text-primary mb-1">{{ stats.sport }}</div>
           <div class="font-label text-xs uppercase tracking-widest text-on-surface-variant">Prestasi Olahraga</div>
         </div>
         <div class="bg-surface-container-low rounded-2xl p-6 border border-outline-variant/30">
@@ -201,7 +204,7 @@ useSeoMeta({
               :key="item.id"
               class="bg-surface-container-low rounded-2xl p-6 border border-outline-variant/30 flex flex-col sm:flex-row gap-4"
             >
-              <div class="w-full sm:w-32 h-32 rounded-xl overflow-hidden flex-shrink-0">
+              <div v-if="item.image" class="w-full sm:w-32 h-32 rounded-xl overflow-hidden flex-shrink-0">
                 <img
                   :src="item.image"
                   :alt="item.title"
@@ -211,26 +214,23 @@ useSeoMeta({
               </div>
               <div class="flex-1 flex flex-col gap-2">
                 <div class="flex items-center gap-2 flex-wrap">
-                  <AppBadge variant="subtle">{{ item.level }}</AppBadge>
+                  <AppBadge v-if="item.level" variant="subtle">{{ item.level }}</AppBadge>
                   <span
                     :class="[
                       'font-label text-[10px] font-bold uppercase tracking-widest',
-                      item.category === 'OLAHRAGA' ? 'text-tertiary' : 'text-secondary'
+                      item.category === 'SPORT' ? 'text-tertiary' : 'text-secondary'
                     ]"
                   >{{ item.category }}</span>
                 </div>
                 <h4 class="font-headline text-lg font-bold text-primary leading-snug">
                   {{ item.title }}
                 </h4>
-                <p class="font-body text-sm text-on-surface-variant leading-relaxed">
+                <p v-if="item.description" class="font-body text-sm text-on-surface-variant leading-relaxed">
                   {{ item.description }}
                 </p>
-                <div
-                  v-if="item.teamLabel"
-                  class="flex items-center gap-2 mt-1"
-                >
-                  <AppIcon name="groups" class="text-sm text-on-surface-variant" />
-                  <span class="font-label text-xs font-bold text-on-surface-variant">{{ item.teamLabel }}</span>
+                <div v-if="item.rank" class="flex items-center gap-2 mt-1">
+                  <AppIcon name="emoji_events" class="text-sm text-on-surface-variant" />
+                  <span class="font-label text-xs font-bold text-on-surface-variant">{{ item.rank }}</span>
                 </div>
               </div>
             </div>
@@ -243,33 +243,6 @@ useSeoMeta({
           <AppIcon name="emoji_events" class="text-3xl text-on-surface-variant" />
         </div>
         <p class="font-body text-on-surface-variant">Belum ada prestasi tercatat.</p>
-      </div>
-    </section>
-
-    <!-- Other students -->
-    <section v-if="otherStudents.length > 0" class="max-w-5xl mx-auto px-6 pb-20">
-      <h2 class="font-headline text-2xl font-bold text-primary mb-6 leading-none">
-        Siswa Berprestasi Lainnya
-      </h2>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <NuxtLink
-          v-for="other in otherStudents"
-          :key="other.id"
-          :to="`/siswa/${other.slug}`"
-          class="bg-surface-container-low rounded-2xl p-4 border border-outline-variant/30 hover:shadow-md transition-shadow flex flex-col items-center text-center gap-3"
-        >
-          <div
-            class="w-16 h-16 rounded-xl bg-secondary-container text-primary flex items-center justify-center font-headline text-xl font-extrabold"
-          >
-            {{ studentInitials(other.name) }}
-          </div>
-          <div>
-            <div class="font-headline text-sm font-bold text-primary leading-tight">{{ other.name }}</div>
-            <div class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant mt-1">
-              {{ other.kelas }}
-            </div>
-          </div>
-        </NuxtLink>
       </div>
     </section>
   </div>

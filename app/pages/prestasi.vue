@@ -1,27 +1,30 @@
 <script setup lang="ts">
-import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
-import { achievements } from '~/data/achievements'
-import { studentById } from '~/data/students'
+import { ref, computed } from 'vue'
+import type { ApiAchievement } from '~/composables/api/types'
+
+const { data: achievementsData } = await useAchievements()
+const achievements = computed<ApiAchievement[]>(() => achievementsData.value?.data ?? [])
 
 const activeFilter = ref('SEMUA')
-const filters = ['SEMUA', 'AKADEMIK', 'OLAHRAGA']
+const filters = ['SEMUA', 'AKADEMIK', 'OLAHRAGA', 'SENI', 'LAINNYA']
 const searchQuery = ref('')
-const expandedTeamId = ref<string | null>(null)
-const popoverPosition = ref({ top: 0, left: 0 })
+const categoryMap: Record<string, string> = {
+  AKADEMIK: 'ACADEMIC',
+  OLAHRAGA: 'SPORT',
+  SENI: 'ART',
+  LAINNYA: 'OTHER',
+}
 
 const filteredAchievements = computed(() => {
   const q = searchQuery.value.toLowerCase()
-  return achievements.filter(item => {
-    const matchesFilter = activeFilter.value === 'SEMUA' || item.category === activeFilter.value
-    const studentNames = item.studentIds
-      .map(id => studentById(id)?.name ?? '')
-      .join(' ')
-      .toLowerCase()
+  const apiCategory = activeFilter.value === 'SEMUA' ? null : categoryMap[activeFilter.value]
+  return achievements.value.filter(item => {
+    const matchesFilter = !apiCategory || item.category === apiCategory
+    const studentName = item.student?.name?.toLowerCase() ?? ''
     const matchesSearch = !q
       || item.title.toLowerCase().includes(q)
-      || item.description.toLowerCase().includes(q)
-      || studentNames.includes(q)
-      || (item.teamLabel?.toLowerCase().includes(q) ?? false)
+      || (item.description?.toLowerCase().includes(q) ?? false)
+      || studentName.includes(q)
     return matchesFilter && matchesSearch
   })
 })
@@ -42,95 +45,6 @@ const stats = [
   { value: "20+", label: "Tahun Pengabdian" },
 ]
 
-function updatePopoverPosition() {
-  if (!expandedTeamId.value) return
-  const btn = document.querySelector(`[data-team-button-id="${expandedTeamId.value}"]`) as HTMLElement | null
-  if (!btn) {
-    // button not present (scrolled out / removed) → close
-    expandedTeamId.value = null
-    return
-  }
-  const rect = btn.getBoundingClientRect()
-
-  // if button is completely outside viewport → close
-  if (rect.bottom < 0 || rect.top > window.innerHeight) {
-    expandedTeamId.value = null
-    return
-  }
-
-  // detect fixed header overlap (common header selector used in repo)
-  const navbar = document.querySelector('header.fixed') as HTMLElement | null
-  if (navbar) {
-    const navRect = navbar.getBoundingClientRect()
-    // if the button's top is behind the navbar's bottom, it's covered → close
-    if (rect.top < navRect.bottom + 2) {
-      expandedTeamId.value = null
-      return
-    }
-  }
-
-  const POPOVER_WIDTH = 256
-  const POPOVER_MAX_HEIGHT = 224
-  const GAP = 8
-
-  let left = rect.left
-  if (left + POPOVER_WIDTH + GAP > window.innerWidth) {
-    left = Math.max(GAP, window.innerWidth - POPOVER_WIDTH - GAP)
-  }
-  if (left < GAP) left = GAP
-
-  let top = rect.bottom + GAP
-  if (top + POPOVER_MAX_HEIGHT + GAP > window.innerHeight) {
-    const above = rect.top - POPOVER_MAX_HEIGHT - GAP
-    if (above >= GAP) {
-      top = above
-    } else {
-      top = Math.max(GAP, window.innerHeight - POPOVER_MAX_HEIGHT - GAP)
-    }
-  }
-
-  popoverPosition.value = { top, left }
-}
-
-function openTeamPopover(id: string, ev: MouseEvent) {
-  const newId = String(id)
-  if (expandedTeamId.value === newId) {
-    expandedTeamId.value = null
-    return
-  }
-  expandedTeamId.value = newId
-  // Position immediately and allow scroll/resize listeners to keep it attached
-  updatePopoverPosition()
-}
-
-function handleDocumentClick(e: MouseEvent) {
-  if (!expandedTeamId.value) return
-  const path = (e.composedPath && (e as any).composedPath()) || (e as any).path || []
-  const clickedInside = path.some((node: any) => {
-    try {
-      return node && node.dataset && (
-        node.dataset.teamButtonId === expandedTeamId.value ||
-        node.dataset.teamPopoverId === expandedTeamId.value ||
-        node.dataset.teamId === expandedTeamId.value
-      )
-    } catch {
-      return false
-    }
-  })
-  if (!clickedInside) expandedTeamId.value = null
-}
-
-onMounted(() => {
-  document.addEventListener('click', handleDocumentClick)
-  // Keep popover anchored to the button during scrolling and resizing
-  window.addEventListener('scroll', updatePopoverPosition, { passive: true })
-  window.addEventListener('resize', updatePopoverPosition)
-})
-onBeforeUnmount(() => {
-  document.removeEventListener('click', handleDocumentClick)
-  window.removeEventListener('scroll', updatePopoverPosition)
-  window.removeEventListener('resize', updatePopoverPosition)
-})
 
 </script>
 
@@ -223,13 +137,13 @@ onBeforeUnmount(() => {
 
             <div class="flex items-start gap-3">
               <div class="w-10 h-10 rounded-xl bg-secondary-container flex items-center justify-center flex-shrink-0">
-                <AppIcon :name="item.category === 'OLAHRAGA' ? 'sports' : 'emoji_events'" :filled="true"
+                <AppIcon :name="item.category === 'SPORT' ? 'sports' : 'emoji_events'" :filled="true"
                   class="text-secondary text-xl" />
               </div>
               <div>
                 <span :class="[
                   'font-label text-[10px] font-bold uppercase tracking-widest',
-                  item.category === 'OLAHRAGA' ? 'text-tertiary' : 'text-secondary'
+                  item.category === 'SPORT' ? 'text-tertiary' : 'text-secondary'
                 ]">{{ item.category }}</span>
                 <h4 class="font-headline text-base font-bold text-primary leading-snug mt-0.5">
                   {{ item.title }}
@@ -241,42 +155,15 @@ onBeforeUnmount(() => {
               {{ item.description }}
             </p>
 
-            <!-- Contributors / team -->
-            <div v-if="item.studentIds.length > 0 || item.teamLabel"
-              class="mt-auto pt-4 border-t border-outline-variant/40 flex flex-col gap-2">
-              <div v-if="item.teamLabel" class="flex items-center gap-2 relative">
-                <AppIcon name="groups" class="text-sm text-on-surface-variant" />
-                <button @click="openTeamPopover(String(item.id), $event)" :data-team-button-id="String(item.id)"
-                  class="font-label text-xs font-bold text-on-surface-variant hover:underline focus:outline-none">
-                  {{ item.teamLabel }}
-                </button>
-
-                <Teleport to="body">
-                  <div v-if="expandedTeamId === String(item.id)" :data-team-popover-id="String(item.id)"
-                    :style="{ position: 'fixed', top: popoverPosition.top + 'px', left: popoverPosition.left + 'px', zIndex: 9999 }"
-                    class="w-64 bg-surface-container-low rounded-lg p-3 shadow-lg border border-outline-variant">
-                    <div class="font-label text-xs text-on-surface-variant mb-2">Anggota Tim</div>
-                    <ul class="space-y-1 max-h-44 overflow-auto">
-                      <li v-for="sid in item.studentIds" :key="sid">
-                        <NuxtLink v-if="studentById(sid)" :to="`/siswa/${studentById(sid)!.slug}`"
-                          class="text-primary font-label text-xs hover:underline">
-                          {{ studentById(sid)!.name }}
-                        </NuxtLink>
-                        <span v-else class="font-label text-xs text-on-surface-variant">Unknown</span>
-                      </li>
-                    </ul>
-                  </div>
-                </Teleport>
-              </div>
-              <div v-else class="flex items-center gap-2 flex-wrap">
+            <!-- Contributor -->
+            <div v-if="item.student"
+              class="mt-auto pt-4 border-t border-outline-variant/40">
+              <div class="flex items-center gap-2">
                 <AppIcon name="person" class="text-sm text-on-surface-variant" />
-                <template v-for="(sid, idx) in item.studentIds" :key="sid">
-                  <NuxtLink v-if="studentById(sid)" :to="`/siswa/${studentById(sid)!.slug}`"
-                    class="font-label text-xs font-bold text-primary hover:underline">{{ studentById(sid)!.name }}
-                  </NuxtLink>
-                  <span v-if="idx < item.studentIds.length - 1"
-                    class="font-label text-xs text-on-surface-variant">,</span>
-                </template>
+                <NuxtLink :to="`/siswa/${item.student.slug}`"
+                  class="font-label text-xs font-bold text-primary hover:underline">
+                  {{ item.student.name }}
+                </NuxtLink>
               </div>
             </div>
           </div><!-- /p-6 -->

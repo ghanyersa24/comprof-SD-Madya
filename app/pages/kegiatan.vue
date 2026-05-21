@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import tahfidzImg from "~/assets/images/tahfidz.png";
+import { computed } from 'vue'
+import type { ApiActivity } from '~/composables/api/types'
 
 useSeoMeta({
   title: "Kegiatan Sekolah - SD Muhammadiyah 01 Ambulu",
@@ -10,29 +11,8 @@ useSeoMeta({
     "Membentuk generasi Robbani yang cerdas, kreatif, dan berakhlak mulia.",
 });
 
-const spiritualActivities = [
-  {
-    title: "Sholat Dhuha",
-    description:
-      "Dilaksanakan setiap pagi sebelum memulai pembelajaran untuk melatih kedisiplinan dan keberkahan hari.",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuA_mD4UmPo9VHhwC4xAhaMPCfpcMiYF6uo1M7FwS3b5teq6p-YGR2SygJuRycR64U3eO_v9JC0Kqrv4vZb7R0a1tZp_RqNbhHMTgGJLwm_xNwwVLhj0bZxxA5SjY4ttGVTqmkJYKUwRDlblgiC7yzsjlMMVymz40KPzIIp4ot_OrcVokg7ZUT83MWuPeqIm7siI6ySrdYWw4vRbLunA-fH9KFFg_f2rqzg_o4i5IjSqStJNYpxw1sjReZp6ECYDUuPMNDHiqAjtS6M",
-  },
-  {
-    title: "Dhuhur Berjamaah",
-    description:
-      "Membiasakan sholat tepat waktu dan mempererat ukhuwah antar siswa dan guru.",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuC19_CXTosaWMjzNs5k8vIAcJfHqc1QSo6Xq_ifxlXrjPae_vPhjWZYDj-degA0WCU1xkSLwwqcqbbJfyYujzJ3ZHCwotAT9Xhrm7oevO1F2I2xR9oGix6iiv_1a-GHL37p9ON1gU32Tj-LyiIIoYspPPveD-HV9x-iPrFzKexiqze_p_2ZCNaldI7Z3GlM1YZqAysTsqID03SoYNH_z0nUH-jFXTOFFKmoXiau09K92iWlnP5wY3LQYLzJuNRZxdNpZfjWqwUl-nM",
-  },
-  {
-    title: "Tahfidz Quran",
-    description:
-      "Program hafalan Al-Quran dengan metode yang menyenangkan sesuai perkembangan usia anak.",
-    image:
-      tahfidzImg,
-  },
-];
+const { data: activitiesData } = await useActivities('Religious')
+const spiritualActivities = computed<ApiActivity[]>(() => activitiesData.value?.data ?? [])
 </script>
 
 <template>
@@ -84,10 +64,10 @@ const spiritualActivities = [
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <ActivityCard
           v-for="activity in spiritualActivities"
-          :key="activity.title"
+          :key="activity.id"
           :title="activity.title"
-          :description="activity.description"
-          :image="activity.image"
+          :description="activity.description ?? ''"
+          :image="activity.image ?? ''"
         />
       </div>
     </section>
